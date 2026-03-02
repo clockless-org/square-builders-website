@@ -11,7 +11,7 @@ export default function Contact() {
   }
 
   return (
-    <section id="contact" className="py-24 md:py-32 bg-navy relative overflow-hidden">
+    <section id="contact" className="py-32 md:py-40 bg-navy relative overflow-hidden">
       {/* Background accent */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-gold/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
 
@@ -39,7 +39,7 @@ export default function Contact() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-cream/50 text-lg max-w-2xl mx-auto mb-12"
+            className="text-cream/50 text-base max-w-2xl mx-auto mb-12 leading-relaxed"
           >
             Share your email and we&apos;ll reach out to schedule a complimentary
             consultation. Let&apos;s turn your vision into reality.

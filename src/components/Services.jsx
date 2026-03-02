@@ -35,7 +35,7 @@ const services = [
 
 export default function Services() {
   return (
-    <section id="services" className="py-24 md:py-32 bg-navy">
+    <section id="services" className="py-32 md:py-40 bg-navy">
       <div className="max-w-6xl mx-auto px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-16">
@@ -74,28 +74,30 @@ export default function Services() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: i * 0.15 }}
               whileHover={{ y: -6 }}
-              className="group relative bg-white/5 border border-white/10 p-8 hover:border-gold/40 transition-all duration-500"
+              className="group relative bg-white/5 border border-white/10 p-10 min-h-[400px] hover:border-gold/40 transition-all duration-500"
             >
               <div className="absolute top-0 left-0 right-0 h-px bg-gold scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
 
-              <div className="text-gold mb-5">{service.icon}</div>
+              <div className="space-y-6">
+                <div className="text-gold">{service.icon}</div>
 
-              <h3 className="font-serif text-cream text-xl font-semibold mb-3">
-                {service.title}
-              </h3>
+                <h3 className="font-serif text-cream text-xl font-semibold">
+                  {service.title}
+                </h3>
 
-              <p className="text-cream/50 text-sm leading-relaxed mb-6">
-                {service.description}
-              </p>
+                <p className="text-cream/50 text-base leading-relaxed">
+                  {service.description}
+                </p>
 
-              <ul className="space-y-2.5">
-                {service.features.map((feat) => (
-                  <li key={feat} className="flex items-center gap-2.5 text-cream/60 text-sm">
-                    <div className="w-1 h-1 bg-gold rounded-full shrink-0" />
-                    {feat}
-                  </li>
-                ))}
-              </ul>
+                <ul className="space-y-2.5">
+                  {service.features.map((feat) => (
+                    <li key={feat} className="flex items-center gap-2.5 text-cream/60 text-sm">
+                      <div className="w-1 h-1 bg-gold rounded-full shrink-0" />
+                      {feat}
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </motion.div>
           ))}
         </div>

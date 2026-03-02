@@ -23,7 +23,7 @@ const projects = [
 
 export default function Projects() {
   return (
-    <section id="projects" className="py-24 md:py-32 bg-cream">
+    <section id="projects" className="py-32 md:py-40 bg-cream">
       <div className="max-w-6xl mx-auto px-6 lg:px-8">
         {/* Header */}
         <div className="mb-14">
@@ -79,7 +79,7 @@ export default function Projects() {
                 <h3 className="font-serif text-cream text-xl font-bold mb-2">
                   {project.title}
                 </h3>
-                <p className="text-cream/0 group-hover:text-cream/70 text-sm leading-relaxed transition-all duration-500 max-h-0 group-hover:max-h-24 overflow-hidden">
+                <p className="text-cream/0 group-hover:text-cream/70 text-base leading-relaxed transition-all duration-500 max-h-0 group-hover:max-h-24 overflow-hidden">
                   {project.description}
                 </p>
               </div>

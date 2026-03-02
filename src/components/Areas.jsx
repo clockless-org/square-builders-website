@@ -8,7 +8,7 @@ const cities = [
 
 export default function Areas() {
   return (
-    <section className="py-20 bg-navy">
+    <section className="py-32 md:py-40 bg-navy">
       <div className="max-w-5xl mx-auto px-6 lg:px-8">
         <div className="text-center mb-12">
           <span className="text-gold text-xs tracking-[0.3em] uppercase font-medium">
@@ -17,7 +17,7 @@ export default function Areas() {
           <h2 className="font-serif text-cream text-3xl md:text-4xl font-bold mt-4 mb-3">
             Service Areas
           </h2>
-          <p className="text-cream/40 text-sm">2025–present project locations</p>
+          <p className="text-cream/40 text-base leading-relaxed">2025–present project locations</p>
         </div>
 
         <div className="flex flex-wrap justify-center gap-3">

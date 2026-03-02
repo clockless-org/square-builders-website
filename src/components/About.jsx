@@ -2,7 +2,7 @@ import { motion } from 'framer-motion'
 
 export default function About() {
   return (
-    <section id="about" className="py-24 md:py-32 bg-cream">
+    <section id="about" className="py-32 md:py-40 bg-cream">
       <div className="max-w-6xl mx-auto px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-20 items-start">
 
@@ -15,7 +15,7 @@ export default function About() {
           >
             <div className="absolute -left-4 top-0 h-full w-px bg-gold opacity-40" />
             <blockquote className="pl-10">
-              <p className="font-serif text-navy text-xl md:text-2xl italic leading-[1.7] mb-8">
+              <p className="font-serif text-navy text-xl italic leading-relaxed mb-8">
                 &ldquo;For over two decades, I&apos;ve been guided by one simple idea: building spaces that reflect people&apos;s vision. Every project is a chance to create something lasting and personal, shaped by the Bay Area&apos;s spirit of innovation.&rdquo;
               </p>
               <footer>
