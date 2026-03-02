@@ -19,8 +19,7 @@ export default function Contact() {
         <div className="text-center">
           <motion.span
             initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             className="text-gold text-sm tracking-[0.3em] uppercase font-medium"
           >
@@ -29,8 +28,7 @@ export default function Contact() {
 
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
             className="font-serif text-cream text-3xl md:text-4xl lg:text-5xl font-bold mt-4 mb-6"
           >
@@ -39,8 +37,7 @@ export default function Contact() {
 
           <motion.p
             initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-cream/50 text-lg max-w-2xl mx-auto mb-12"
           >
@@ -51,8 +48,7 @@ export default function Contact() {
           {/* Form */}
           <motion.form
             initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
             onSubmit={handleSubmit}
             className="flex flex-col sm:flex-row gap-4 max-w-xl mx-auto mb-12"
@@ -86,8 +82,7 @@ export default function Contact() {
           {/* Contact Info */}
           <motion.div
             initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
+            animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.4 }}
             className="flex flex-col sm:flex-row items-center justify-center gap-6 text-cream/40 mb-6"
           >
@@ -113,8 +108,7 @@ export default function Contact() {
           {/* Address */}
           <motion.div
             initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
+            animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.5 }}
             className="flex items-center justify-center gap-2 text-cream/40"
           >

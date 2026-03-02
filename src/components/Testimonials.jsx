@@ -28,8 +28,7 @@ export default function Testimonials() {
         <div className="text-center mb-20">
           <motion.span
             initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             className="text-gold text-sm tracking-[0.3em] uppercase font-medium"
           >
@@ -37,8 +36,7 @@ export default function Testimonials() {
           </motion.span>
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
             className="font-serif text-navy text-3xl md:text-4xl lg:text-5xl font-bold mt-4"
           >
@@ -51,8 +49,7 @@ export default function Testimonials() {
             <motion.div
               key={t.author}
               initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-50px' }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: i * 0.15 }}
               className="bg-white p-8 lg:p-10 border border-navy/5 hover:shadow-xl hover:shadow-navy/5 transition-shadow duration-500"
             >

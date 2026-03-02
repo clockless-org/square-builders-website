@@ -30,8 +30,7 @@ export default function Projects() {
           <div>
             <motion.span
               initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
               className="text-gold text-sm tracking-[0.3em] uppercase font-medium"
             >
@@ -39,8 +38,7 @@ export default function Projects() {
             </motion.span>
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
               className="font-serif text-navy text-3xl md:text-4xl lg:text-5xl font-bold mt-4"
             >
@@ -49,8 +47,7 @@ export default function Projects() {
           </div>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-charcoal/60 max-w-md mt-4 md:mt-0"
           >
@@ -65,8 +62,7 @@ export default function Projects() {
             <motion.div
               key={project.title}
               initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-50px' }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: i * 0.15 }}
               className="group relative aspect-[3/4] overflow-hidden cursor-pointer"
             >
