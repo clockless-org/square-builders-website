@@ -1,48 +1,33 @@
 import { motion } from 'framer-motion'
 
 const cities = [
-  'Palo Alto',
-  'Saratoga',
-  'Sunnyvale',
-  'Mountain View',
-  'San Jose',
-  'Atherton',
-  'Los Altos',
-  'Cupertino',
-  'Campbell',
-  'Burlingame',
-  'Hillsborough',
-  'Menlo Park',
-  'Belmont',
+  'Palo Alto', 'Saratoga', 'Sunnyvale', 'Mountain View', 'San Jose',
+  'Atherton', 'Los Altos', 'Cupertino', 'Campbell', 'Burlingame',
+  'Hillsborough', 'Menlo Park', 'Belmont',
 ]
 
 export default function Areas() {
   return (
-    <section className="py-20 bg-navy overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-12"
-        >
-          <span className="text-gold text-sm tracking-[0.3em] uppercase font-medium">
+    <section className="py-20 bg-navy">
+      <div className="max-w-5xl mx-auto px-6 lg:px-8">
+        <div className="text-center mb-12">
+          <span className="text-gold text-xs tracking-[0.3em] uppercase font-medium">
             Where We Build
           </span>
-          <h2 className="font-serif text-cream text-3xl md:text-4xl font-bold mt-4">
+          <h2 className="font-serif text-cream text-3xl md:text-4xl font-bold mt-4 mb-3">
             Service Areas
           </h2>
-        </motion.div>
+          <p className="text-cream/40 text-sm">2025–present project locations</p>
+        </div>
 
-        <div className="flex flex-wrap justify-center gap-4 md:gap-6">
+        <div className="flex flex-wrap justify-center gap-3">
           {cities.map((city, i) => (
             <motion.div
               key={city}
-              initial={{ opacity: 0, scale: 0.9 }}
+              initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, delay: i * 0.07 }}
-              whileHover={{ scale: 1.05, borderColor: '#C9A84C' }}
-              className="px-8 py-4 border border-cream/15 text-cream font-serif text-lg md:text-xl tracking-wide cursor-default transition-colors duration-300 hover:text-gold"
+              transition={{ duration: 0.4, delay: i * 0.05 }}
+              className="px-6 py-3 border border-cream/15 text-cream/80 text-sm tracking-wide hover:border-gold hover:text-gold transition-all duration-300 cursor-default"
             >
               {city}
             </motion.div>

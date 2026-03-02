@@ -9,21 +9,21 @@ const stats = [
 
 export default function Stats() {
   return (
-    <section className="bg-navy border-y border-gold/20">
-      <div className="max-w-6xl mx-auto px-6 py-16">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-4">
+    <section className="bg-navy border-t border-gold/10">
+      <div className="max-w-5xl mx-auto px-6 py-14">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
           {stats.map((stat, i) => (
             <motion.div
               key={stat.label}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: i * 0.15 }}
+              transition={{ duration: 0.6, delay: i * 0.1 }}
               className="text-center"
             >
               <div className="text-gold font-serif text-4xl md:text-5xl font-bold mb-2">
                 {stat.value}
               </div>
-              <div className="text-cream/50 text-sm tracking-wide uppercase">
+              <div className="text-cream/40 text-xs tracking-widest uppercase">
                 {stat.label}
               </div>
             </motion.div>
