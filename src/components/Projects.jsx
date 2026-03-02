@@ -5,19 +5,19 @@ const projects = [
     title: 'The Vista Room',
     category: 'Remodel',
     description: 'A breathtaking entertainment space with panoramic valley views, blending indoor-outdoor living seamlessly.',
-    gradient: 'from-navy via-[#1a3a5c] to-[#0d4a4a]',
+    image: '/images/project-vista.jpg',
   },
   {
     title: 'The Overlook',
     category: 'New Construction',
     description: '7,488 sq ft hilltop masterpiece featuring sweeping vistas, modern architecture, and luxury finishes throughout.',
-    gradient: 'from-[#0d4a4a] via-navy to-[#1a2a4c]',
+    image: '/images/project-overlook.jpg',
   },
   {
     title: 'The Daylight Kitchen',
     category: 'Design Build',
-    description: 'A chef\'s kitchen flooded with natural light, featuring custom cabinetry and a stunning waterfall island.',
-    gradient: 'from-[#1a2a4c] via-[#2a1a3c] to-navy',
+    description: "A chef's kitchen flooded with natural light, featuring custom cabinetry and a stunning waterfall island.",
+    image: '/images/project-kitchen.jpg',
   },
 ]
 
@@ -70,22 +70,12 @@ export default function Projects() {
               transition={{ duration: 0.7, delay: i * 0.15 }}
               className="group relative aspect-[3/4] overflow-hidden cursor-pointer"
             >
-              {/* Gradient Placeholder */}
-              <div
-                className={`absolute inset-0 bg-gradient-to-br ${project.gradient} transition-transform duration-700 group-hover:scale-110`}
+              {/* Real Project Image */}
+              <img
+                src={project.image}
+                alt={project.title}
+                className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
               />
-
-              {/* Pattern overlay */}
-              <div className="absolute inset-0 opacity-20">
-                <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-                  <defs>
-                    <pattern id={`grid-${i}`} width="40" height="40" patternUnits="userSpaceOnUse">
-                      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#C9A84C" strokeWidth="0.5" strokeOpacity="0.3" />
-                    </pattern>
-                  </defs>
-                  <rect width="100%" height="100%" fill={`url(#grid-${i})`} />
-                </svg>
-              </div>
 
               {/* Overlay gradient */}
               <div className="absolute inset-0 bg-gradient-to-t from-navy via-navy/30 to-transparent" />

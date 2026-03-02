@@ -6,6 +6,14 @@ const cities = [
   'Sunnyvale',
   'Mountain View',
   'San Jose',
+  'Atherton',
+  'Los Altos',
+  'Cupertino',
+  'Campbell',
+  'Burlingame',
+  'Hillsborough',
+  'Menlo Park',
+  'Belmont',
 ]
 
 export default function Areas() {
@@ -34,7 +42,7 @@ export default function Areas() {
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
+              transition={{ duration: 0.5, delay: i * 0.07 }}
               whileHover={{ scale: 1.05, borderColor: '#C9A84C' }}
               className="px-8 py-4 border border-cream/15 text-cream font-serif text-lg md:text-xl tracking-wide cursor-default transition-colors duration-300 hover:text-gold"
             >

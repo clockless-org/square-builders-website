@@ -8,9 +8,11 @@ export default function Footer() {
           {/* Brand */}
           <div className="col-span-2 md:col-span-1">
             <div className="flex items-center gap-3 mb-4">
-              <div className="w-8 h-8 border border-gold flex items-center justify-center">
-                <span className="text-gold font-serif font-bold text-sm">S</span>
-              </div>
+              <img
+                src="/images/logo.png"
+                alt="Square Builders Group"
+                className="w-8 h-8 object-contain"
+              />
               <span className="text-cream font-serif font-semibold">
                 Square Builders
               </span>
@@ -27,7 +29,7 @@ export default function Footer() {
               Services
             </h4>
             <ul className="space-y-2">
-              {['Design Build', 'New Construction', 'Remodeling', 'ADU Construction'].map(
+              {['Design Build', 'New Construction', 'Overall Improvement'].map(
                 (item) => (
                   <li key={item}>
                     <a href="#services" className="text-cream/40 text-sm hover:text-cream transition-colors duration-200">
@@ -45,13 +47,16 @@ export default function Footer() {
               Service Areas
             </h4>
             <ul className="space-y-2">
-              {['Palo Alto', 'Saratoga', 'Sunnyvale', 'Mountain View', 'San Jose'].map(
+              {['Palo Alto', 'Saratoga', 'Sunnyvale', 'Mountain View', 'San Jose', 'Atherton', 'Los Altos', 'Cupertino'].map(
                 (item) => (
                   <li key={item} className="text-cream/40 text-sm">
                     {item}
                   </li>
                 )
               )}
+              <li className="text-cream/40 text-sm">
+                + 5 more cities
+              </li>
             </ul>
           </div>
 
@@ -62,8 +67,8 @@ export default function Footer() {
             </h4>
             <ul className="space-y-2 text-cream/40 text-sm">
               <li>
-                <a href="tel:+14085551234" className="hover:text-cream transition-colors duration-200">
-                  (408) 555-1234
+                <a href="tel:+16692229990" className="hover:text-cream transition-colors duration-200">
+                  (669) 222-9990
                 </a>
               </li>
               <li>
@@ -71,7 +76,8 @@ export default function Footer() {
                   info@squarebuildersgroup.com
                 </a>
               </li>
-              <li>Bay Area, California</li>
+              <li>920 Saratoga Ave, Ste 107</li>
+              <li>San Jose, CA 95129</li>
             </ul>
           </div>
         </div>

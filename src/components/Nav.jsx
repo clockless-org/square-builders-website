@@ -34,11 +34,11 @@ export default function Nav() {
         <div className="max-w-7xl mx-auto flex items-center justify-between px-6 lg:px-8 h-20">
           {/* Logo */}
           <a href="#" className="flex items-center gap-3 group">
-            <div className="w-10 h-10 border-2 border-gold flex items-center justify-center group-hover:bg-gold transition-colors duration-300">
-              <span className="text-gold group-hover:text-navy font-serif font-bold text-lg transition-colors duration-300">
-                S
-              </span>
-            </div>
+            <img
+              src="/images/logo.png"
+              alt="Square Builders Group"
+              className="w-10 h-10 object-contain"
+            />
             <div className="hidden sm:block">
               <span className="text-cream font-serif text-lg font-semibold tracking-wide">
                 Square Builders

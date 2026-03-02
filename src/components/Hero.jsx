@@ -2,7 +2,18 @@ import { motion } from 'framer-motion'
 
 export default function Hero() {
   return (
-    <section className="relative h-screen min-h-[700px] flex items-center justify-center overflow-hidden bg-navy">
+    <section className="relative h-screen min-h-[700px] flex items-center justify-center overflow-hidden">
+      {/* Background Image */}
+      <div className="absolute inset-0">
+        <img
+          src="/images/hero-main.jpg"
+          alt="Square Builders Group construction site"
+          className="w-full h-full object-cover"
+        />
+        {/* Dark gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-navy/80 via-navy/60 to-navy/90" />
+      </div>
+
       {/* Animated Gold Geometric Lines */}
       <div className="absolute inset-0 overflow-hidden">
         <svg className="absolute inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
