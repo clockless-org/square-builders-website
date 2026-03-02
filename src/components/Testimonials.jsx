@@ -24,7 +24,7 @@ const testimonials = [
 export default function Testimonials() {
   return (
     <section id="testimonials" className="py-32 md:py-40 bg-cream">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+      <div className="max-w-6xl mx-auto px-8 lg:px-12">
         <div className="text-center mb-20">
           <motion.span
             initial={{ opacity: 0, y: 20 }}

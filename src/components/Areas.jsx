@@ -9,7 +9,7 @@ const cities = [
 export default function Areas() {
   return (
     <section className="py-32 md:py-40 bg-navy">
-      <div className="max-w-5xl mx-auto px-6 lg:px-8">
+      <div className="max-w-5xl mx-auto px-8 lg:px-12">
         <div className="text-center mb-12">
           <span className="text-gold text-xs tracking-[0.3em] uppercase font-medium">
             Where We Build

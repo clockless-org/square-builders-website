@@ -37,7 +37,7 @@ export default function Nav() {
             <img
               src="/images/logo.png"
               alt="Square Builders Group"
-              className="w-10 h-10 object-contain"
+              className="w-10 h-10 object-contain brightness-0 invert"
             />
             <div className="hidden sm:block">
               <span className="text-cream font-serif text-lg font-semibold tracking-wide">

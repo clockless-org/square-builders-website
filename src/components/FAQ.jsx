@@ -66,7 +66,7 @@ export default function FAQ() {
 
   return (
     <section className="py-24 md:py-32 bg-cream">
-      <div className="max-w-3xl mx-auto px-6 lg:px-8">
+      <div className="max-w-3xl mx-auto px-8 lg:px-12">
         <div className="text-center mb-16">
           <motion.span
             initial={{ opacity: 0, y: 20 }}

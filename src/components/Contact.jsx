@@ -16,7 +16,7 @@ export default function Contact() {
       <div className="absolute top-0 right-0 w-96 h-96 bg-[radial-gradient(circle_at_center,rgba(201,168,76,0.1)_0%,transparent_70%)] rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[radial-gradient(circle_at_center,rgba(201,168,76,0.05)_0%,transparent_70%)] rounded-full blur-3xl translate-y-1/3 -translate-x-1/3 pointer-events-none" />
 
-      <div className="max-w-4xl mx-auto px-6 lg:px-8 relative z-10">
+      <div className="max-w-4xl mx-auto px-8 lg:px-12 relative z-10">
         <div className="text-center">
           <motion.span
             initial={{ opacity: 0, y: 20 }}
