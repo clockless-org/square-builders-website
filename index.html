@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Square Builders Group | Bay Area Custom Home Builder</title>
+  <meta name="description" content="Square Builders Group — 20+ years of award-winning custom home construction in Palo Alto, Saratoga, Sunnyvale, Mountain View & San Jose.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root{--navy:#0F1E35;--navy-light:#1A2F4A;--gold:#C9A84C;--gold-light:#E8C97A;--white:#FFFFFF;--off-white:#F8F6F1;--gray:#6B7280;--border:#E5E0D5}
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:'Inter',sans-serif;color:var(--navy);background:var(--white);line-height:1.6}
+    h1,h2,h3{font-family:'Playfair Display',serif}
+    nav{position:fixed;top:0;width:100%;z-index:100;background:rgba(15,30,53,.97);backdrop-filter:blur(10px);padding:0 5%;display:flex;align-items:center;justify-content:space-between;height:70px}
+    .nav-logo{font-family:'Playfair Display',serif;color:#fff;font-size:20px;font-weight:700}
+    .nav-logo span{color:var(--gold)}
+    .nav-links{display:flex;gap:32px;list-style:none}
+    .nav-links a{color:rgba(255,255,255,.8);text-decoration:none;font-size:14px;font-weight:500;transition:color .2s}
+    .nav-links a:hover{color:var(--gold)}
+    .nav-cta{background:var(--gold);color:var(--navy);padding:10px 22px;border-radius:4px;font-size:14px;font-weight:600;text-decoration:none}
+    .hero{min-height:100vh;background:linear-gradient(135deg,#0F1E35 0%,#1A2F4A 50%,#0D2137 100%);display:flex;align-items:center;padding:100px 5% 80px;position:relative;overflow:hidden}
+    .hero-content{max-width:680px;position:relative;z-index:1}
+    .hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(201,168,76,.15);border:1px solid rgba(201,168,76,.3);color:var(--gold);font-size:13px;font-weight:500;padding:6px 14px;border-radius:20px;margin-bottom:24px}
+    .hero h1{font-size:clamp(36px,5vw,60px);color:#fff;line-height:1.1;margin-bottom:20px}
+    .hero h1 span{color:var(--gold)}
+    .hero p{font-size:18px;color:rgba(255,255,255,.75);margin-bottom:36px;line-height:1.7}
+    .hero-btns{display:flex;gap:16px;flex-wrap:wrap}
+    .btn-primary{background:var(--gold);color:var(--navy);padding:16px 32px;border-radius:4px;font-weight:700;font-size:15px;text-decoration:none;display:inline-block;transition:all .2s}
+    .btn-primary:hover{background:var(--gold-light);transform:translateY(-1px)}
+    .btn-outline{border:2px solid rgba(255,255,255,.4);color:#fff;padding:14px 32px;border-radius:4px;font-weight:600;font-size:15px;text-decoration:none;display:inline-block;transition:all .2s}
+    .btn-outline:hover{border-color:var(--gold);color:var(--gold)}
+    .hero-stats{display:flex;gap:40px;margin-top:56px;padding-top:40px;border-top:1px solid rgba(255,255,255,.1)}
+    .hero-stat-num{font-family:'Playfair Display',serif;font-size:36px;color:var(--gold);font-weight:700}
+    .hero-stat-label{font-size:13px;color:rgba(255,255,255,.55);margin-top:2px}
+    .trust-bar{background:var(--off-white);border-bottom:1px solid var(--border);padding:20px 5%;display:flex;align-items:center;justify-content:center;gap:48px;flex-wrap:wrap}
+    .trust-item{display:flex;align-items:center;gap:10px;font-size:14px;font-weight:600;color:var(--navy)}
+    .trust-icon{color:var(--gold);font-size:18px}
+    section{padding:80px 5%}
+    .section-label{font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
+    .section-title{font-size:clamp(28px,3.5vw,42px);color:var(--navy);margin-bottom:16px;line-height:1.2}
+    .section-desc{font-size:17px;color:var(--gray);max-width:580px;line-height:1.7}
+    .section-header{margin-bottom:56px}
+    .section-header.centered{text-align:center}
+    .section-header.centered .section-desc{margin:0 auto}
+    .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+    .about-img-placeholder{aspect-ratio:4/5;background:linear-gradient(135deg,#1A2F4A 0%,#0F1E35 100%);border-radius:2px;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:28px;color:var(--gold);text-align:center;line-height:1.4}
+    .about-quote{font-family:'Playfair Display',serif;font-size:21px;color:var(--navy);font-style:italic;line-height:1.5;border-left:3px solid var(--gold);padding-left:24px;margin:28px 0}
+    .about-quote-attr{font-size:14px;color:var(--gray);font-weight:600;margin-top:8px}
+    .services{background:var(--off-white)}
+    .services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+    .service-card{background:#fff;border:1px solid var(--border);border-radius:2px;padding:40px 32px;transition:all .3s}
+    .service-card:hover{border-color:var(--gold);box-shadow:0 8px 32px rgba(201,168,76,.12);transform:translateY(-4px)}
+    .service-icon{width:52px;height:52px;background:linear-gradient(135deg,var(--navy),var(--navy-light));border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:24px}
+    .service-card h3{font-size:22px;margin-bottom:12px;color:var(--navy)}
+    .service-card p{font-size:15px;color:var(--gray);line-height:1.7}
+    .service-features{list-style:none;margin-top:20px}
+    .service-features li{font-size:14px;color:var(--navy);padding:6px 0;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px}
+    .service-features li:last-child{border:none}
+    .service-features li::before{content:'✓';color:var(--gold);font-weight:700}
+    .projects-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+    .project-card{border-radius:2px;overflow:hidden}
+    .project-img{aspect-ratio:4/3;position:relative;overflow:hidden}
+    .project-img-bg{width:100%;height:100%;transition:transform .4s;display:flex;align-items:center;justify-content:center}
+    .project-card:hover .project-img-bg{transform:scale(1.04)}
+    .project-img-1{background:linear-gradient(135deg,#2A4A6B,#1A3550)}
+    .project-img-2{background:linear-gradient(135deg,#1E3D5C,#0F2A40)}
+    .project-img-3{background:linear-gradient(135deg,#2C4F70,#1A3B58)}
+    .project-img-label{font-family:'Playfair Display',serif;font-size:16px;color:rgba(201,168,76,.8);letter-spacing:2px;text-transform:uppercase}
+    .project-info{padding:20px;background:var(--off-white);border:1px solid var(--border);border-top:none}
+    .project-info h3{font-size:18px;margin-bottom:6px}
+    .project-info p{font-size:14px;color:var(--gray)}
+    .project-tag{display:inline-block;margin-top:10px;background:var(--navy);color:var(--gold);font-size:11px;font-weight:700;letter-spacing:1px;padding:4px 10px;border-radius:2px;text-transform:uppercase}
+    .areas{background:var(--navy)}
+    .areas .section-title{color:#fff}
+    .areas-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;margin-top:48px}
+    .area-card{background:rgba(255,255,255,.06);border:1px solid rgba(201,168,76,.2);border-radius:2px;padding:28px 16px;text-align:center;transition:all .2s}
+    .area-card:hover{background:rgba(201,168,76,.1);border-color:var(--gold)}
+    .area-icon{font-size:24px;margin-bottom:10px}
+    .area-name{font-family:'Playfair Display',serif;font-size:16px;color:#fff;font-weight:600}
+    .area-desc{font-size:12px;color:rgba(255,255,255,.45);margin-top:4px}
+    .testimonials{background:var(--off-white)}
+    .testimonials-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+    .testimonial-card{background:#fff;border:1px solid var(--border);border-radius:2px;padding:36px 28px}
+    .stars{color:var(--gold);font-size:18px;margin-bottom:16px}
+    .testimonial-text{font-size:15px;color:var(--navy);line-height:1.7;font-style:italic;margin-bottom:20px}
+    .testimonial-author{display:flex;align-items:center;gap:12px}
+    .author-avatar{width:40px;height:40px;border-radius:50%;background:var(--navy);display:flex;align-items:center;justify-content:center;color:var(--gold);font-weight:700;font-size:15px}
+    .author-name{font-weight:700;font-size:14px;color:var(--navy)}
+    .author-loc{font-size:12px;color:var(--gray)}
+    .faq-grid{max-width:720px;margin:0 auto}
+    .faq-item{border-bottom:1px solid var(--border);padding:24px 0}
+    .faq-q{font-family:'Playfair Display',serif;font-size:18px;color:var(--navy);margin-bottom:12px;font-weight:600}
+    .faq-a{font-size:15px;color:var(--gray);line-height:1.7}
+    .cta-section{background:linear-gradient(135deg,#0F1E35,#1A2F4A);padding:100px 5%;text-align:center}
+    .cta-section h2{font-size:clamp(32px,4vw,52px);color:#fff;margin-bottom:16px}
+    .cta-section h2 span{color:var(--gold)}
+    .cta-section>p{font-size:18px;color:rgba(255,255,255,.7);margin-bottom:40px}
+    .cta-options{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;margin-bottom:48px}
+    .cta-phone{display:flex;align-items:center;gap:10px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);color:#fff;padding:16px 28px;border-radius:4px;font-size:16px;font-weight:600;text-decoration:none;transition:all .2s}
+    .cta-phone:hover{border-color:var(--gold);color:var(--gold)}
+    .contact-form{max-width:520px;margin:0 auto;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:4px;padding:36px;text-align:left}
+    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+    .form-group{margin-bottom:16px}
+    .form-group label{display:block;font-size:13px;font-weight:600;color:rgba(255,255,255,.6);margin-bottom:6px}
+    .form-group input,.form-group select,.form-group textarea{width:100%;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);color:#fff;padding:12px 14px;border-radius:4px;font-size:14px;font-family:'Inter',sans-serif;outline:none;transition:border-color .2s}
+    .form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--gold)}
+    .form-group select option{background:var(--navy)}
+    .form-group textarea{height:100px;resize:none}
+    .form-submit{width:100%;background:var(--gold);color:var(--navy);padding:16px;border:none;border-radius:4px;font-size:15px;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif}
+    .form-submit:hover{background:var(--gold-light)}
+    footer{background:#0A1622;padding:48px 5% 28px}
+    .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;margin-bottom:40px}
+    .footer-brand p{font-size:14px;color:rgba(255,255,255,.45);line-height:1.7;margin-top:14px}
+    .footer-col h4{font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);margin-bottom:16px}
+    .footer-col ul{list-style:none}
+    .footer-col li{font-size:14px;color:rgba(255,255,255,.5);padding:5px 0}
+    .footer-bottom{border-top:1px solid rgba(255,255,255,.08);padding-top:24px;display:flex;justify-content:space-between;align-items:center}
+    .footer-bottom p{font-size:13px;color:rgba(255,255,255,.3)}
+    .footer-license{display:flex;gap:16px}
+    .license-badge{font-size:12px;color:rgba(201,168,76,.6);background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.15);padding:4px 10px;border-radius:2px}
+    @media(max-width:900px){.about-grid,.services-grid,.testimonials-grid{grid-template-columns:1fr}.projects-grid{grid-template-columns:1fr 1fr}.areas-grid{grid-template-columns:repeat(3,1fr)}.footer-grid{grid-template-columns:1fr 1fr}.nav-links{display:none}}
+    @media(max-width:600px){.projects-grid{grid-template-columns:1fr}.areas-grid{grid-template-columns:repeat(2,1fr)}.form-row{grid-template-columns:1fr}.footer-grid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Square <span>Builders</span> Group</div>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#areas">Areas</a></li>
+    <li><a href="#about">About</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Free Consultation</a>
+</nav>
+
+<section class="hero" id="home">
+  <div class="hero-content">
+    <div class="hero-badge">⭐ Bay Area's Trusted Custom Home Builder Since 2004</div>
+    <h1>Building <span>Bay Area</span> Dream Homes for Over Two Decades</h1>
+    <p>From Palo Alto's premier neighborhoods to Saratoga's hillside estates — Square Builders Group delivers exceptional craftsmanship, on time and within budget. One team. One call. Zero stress.</p>
+    <div class="hero-btns">
+      <a href="#contact" class="btn-primary">Get Free Consultation →</a>
+      <a href="#projects" class="btn-outline">View Our Work</a>
+    </div>
+    <div class="hero-stats">
+      <div><div class="hero-stat-num">20+</div><div class="hero-stat-label">Years Experience</div></div>
+      <div><div class="hero-stat-num">150+</div><div class="hero-stat-label">Projects Completed</div></div>
+      <div><div class="hero-stat-num">5★</div><div class="hero-stat-label">Client Rating</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="trust-bar">
+  <div class="trust-item"><span class="trust-icon">🏆</span> 20+ Years in Business</div>
+  <div class="trust-item"><span class="trust-icon">✅</span> Licensed & Insured</div>
+  <div class="trust-item"><span class="trust-icon">📍</span> Bay Area Local & Family-Owned</div>
+  <div class="trust-item"><span class="trust-icon">⭐</span> 5-Star Google Rated</div>
+  <div class="trust-item"><span class="trust-icon">🤝</span> 100% Client Satisfaction</div>
+</div>
+
+<section id="about">
+  <div class="about-grid">
+    <div class="about-img-placeholder">20 Years<br>of Excellence</div>
+    <div>
+      <div class="section-label">Our Story</div>
+      <h2 class="section-title">Built on Trust,<br>Crafted with Purpose</h2>
+      <blockquote class="about-quote">
+        "For over two decades, I've been guided by one simple idea: building spaces that reflect people's vision. Every project is a chance to create something lasting and personal."
+        <div class="about-quote-attr">— Edwin Li, CEO & Founder</div>
+      </blockquote>
+      <p style="color:var(--gray);font-size:15px;line-height:1.8">Square Builders Group has been transforming Bay Area homes since 2004. We handle every phase — design, permits, construction, finishing — under one roof. One team, one contract, no surprises.</p>
+      <a href="#contact" class="btn-primary" style="margin-top:28px;display:inline-block">Start Your Project</a>
+    </div>
+  </div>
+</section>
+
+<section class="services" id="services">
+  <div class="section-header centered">
+    <div class="section-label">What We Build</div>
+    <h2 class="section-title">Our Services</h2>
+    <p class="section-desc">From concept to completion, we handle every detail so you don't have to.</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-icon">🏗️</div>
+      <h3>Design Build</h3>
+      <p>A seamless, one-stop solution combining expert design and precision construction. You share the vision — we handle everything else.</p>
+      <ul class="service-features">
+        <li>Architectural design & planning</li>
+        <li>Permit acquisition & management</li>
+        <li>Single point of accountability</li>
+        <li>Faster timeline, lower cost</li>
+      </ul>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🏡</div>
+      <h3>New Construction</h3>
+      <p>Custom homes built from the ground up with precision engineering and premium materials. Your vision, built to last generations.</p>
+      <ul class="service-features">
+        <li>Fully custom design</li>
+        <li>Foundation to finishing</li>
+        <li>Premium material sourcing</li>
+        <li>On-time, on-budget delivery</li>
+      </ul>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">✨</div>
+      <h3>Remodeling & Renovation</h3>
+      <p>Transform your existing space into something extraordinary. Kitchen remodels, additions, ADUs, and structural upgrades.</p>
+      <ul class="service-features">
+        <li>Kitchen & bath remodels</li>
+        <li>Home additions & ADUs</li>
+        <li>Structural improvements</li>
+        <li>Whole-home renovations</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="section-header">
+    <div class="section-label">Portfolio</div>
+    <h2 class="section-title">Recent Projects</h2>
+    <p class="section-desc">A glimpse into the homes we've built across Bay Area's most prestigious neighborhoods.</p>
+  </div>
+  <div class="projects-grid">
+    <div class="project-card">
+      <div class="project-img"><div class="project-img-bg project-img-1"><div class="project-img-label">The Vista Room</div></div></div>
+      <div class="project-info"><h3>The Vista Room</h3><p>Serene living space with expansive valley views, designed for elevated everyday living.</p><span class="project-tag">Design Build</span></div>
+    </div>
+    <div class="project-card">
+      <div class="project-img"><div class="project-img-bg project-img-2"><div class="project-img-label">The Overlook</div></div></div>
+      <div class="project-info"><h3>The Overlook</h3><p>7,488 sq ft hilltop residence with breathtaking panoramic views and outdoor living spaces.</p><span class="project-tag">New Construction</span></div>
+    </div>
+    <div class="project-card">
+      <div class="project-img"><div class="project-img-bg project-img-3"><div class="project-img-label">The Daylight Kitchen</div></div></div>
+      <div class="project-info"><h3>The Daylight Kitchen</h3><p>Sun-filled kitchen with overhead skylight, warm finishes, and a grand central island.</p><span class="project-tag">Remodeling</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="areas" id="areas">
+  <div class="section-header">
+    <div class="section-label">Where We Build</div>
+    <h2 class="section-title">Serving the Bay Area's Premier Communities</h2>
+    <p class="section-desc" style="color:rgba(255,255,255,.6)">From Silicon Valley's innovation corridors to the South Bay's hillside estates.</p>
+  </div>
+  <div class="areas-grid">
+    <div class="area-card"><div class="area-icon">🌳</div><div class="area-name">Palo Alto</div><div class="area-desc">Stanford & Midtown</div></div>
+    <div class="area-card"><div class="area-icon">⛰️</div><div class="area-name">Saratoga</div><div class="area-desc">Hillside Estates</div></div>
+    <div class="area-card"><div class="area-icon">☀️</div><div class="area-name">Sunnyvale</div><div class="area-desc">Premium Communities</div></div>
+    <div class="area-card"><div class="area-icon">🏔️</div><div class="area-name">Mountain View</div><div class="area-desc">Tech Corridor</div></div>
+    <div class="area-card"><div class="area-icon">🌉</div><div class="area-name">San Jose</div><div class="area-desc">Silicon Valley Hub</div></div>
+  </div>
+</section>
+
+<section class="testimonials">
+  <div class="section-header centered">
+    <div class="section-label">Client Stories</div>
+    <h2 class="section-title">What Our Clients Say</h2>
+  </div>
+  <div class="testimonials-grid">
+    <div class="testimonial-card">
+      <div class="stars">★★★★★</div>
+      <p class="testimonial-text">"Edwin and his team built our dream home in Palo Alto from scratch. They handled every permit, every decision, every detail — and delivered on time. I can't imagine working with anyone else."</p>
+      <div class="testimonial-author"><div class="author-avatar">MK</div><div><div class="author-name">Michael K.</div><div class="author-loc">Palo Alto · New Construction</div></div></div>
+    </div>
+    <div class="testimonial-card">
+      <div class="stars">★★★★★</div>
+      <p class="testimonial-text">"Our Saratoga kitchen remodel was transformative. Square Builders respected our budget, communicated proactively, and the craftsmanship is stunning. We still get compliments six months later."</p>
+      <div class="testimonial-author"><div class="author-avatar">SL</div><div><div class="author-name">Sarah L.</div><div class="author-loc">Saratoga · Kitchen Remodel</div></div></div>
+    </div>
+    <div class="testimonial-card">
+      <div class="stars">★★★★★</div>
+      <p class="testimonial-text">"As a first-time custom home builder, I was nervous. Edwin personally walked me through every phase. The Design-Build approach meant one team, one contract, zero surprises. Highly recommend."</p>
+      <div class="testimonial-author"><div class="author-avatar">JC</div><div><div class="author-name">James C.</div><div class="author-loc">Sunnyvale · Design Build</div></div></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="section-header centered">
+    <div class="section-label">Common Questions</div>
+    <h2 class="section-title">Frequently Asked Questions</h2>
+  </div>
+  <div class="faq-grid">
+    <div class="faq-item"><div class="faq-q">How long does a custom home build take in the Bay Area?</div><div class="faq-a">Most custom home projects take 12–18 months from permit approval to move-in. Our Design-Build process significantly reduces timeline by combining design and construction phases under one roof.</div></div>
+    <div class="faq-item"><div class="faq-q">Do you handle permits and city approvals?</div><div class="faq-a">Yes — permit acquisition is fully included in our service. We're deeply familiar with Bay Area requirements, including Palo Alto's rigorous review process and Saratoga's hillside development regulations. You don't lift a finger on paperwork.</div></div>
+    <div class="faq-item"><div class="faq-q">What's the difference between Design-Build and hiring separately?</div><div class="faq-a">With Design-Build, one team manages both design and construction — eliminating miscommunication, reducing costs, and speeding up timelines. Separate architect + contractor often means change orders, delays, and blame-shifting. We built our model to fix that.</div></div>
+    <div class="faq-item"><div class="faq-q">What is your typical project budget range?</div><div class="faq-a">Custom home construction in the Bay Area typically ranges from $400–$800 per square foot depending on finishes and complexity. We provide free consultations and transparent, detailed estimates before any work begins — no surprises.</div></div>
+    <div class="faq-item"><div class="faq-q">Are you licensed and insured in California?</div><div class="faq-a">Yes. Square Builders Group holds a current California Contractor's License and carries full general liability insurance and workers' compensation coverage. We're happy to provide documentation upon request.</div></div>
+  </div>
+</section>
+
+<section class="cta-section" id="contact">
+  <div class="section-label" style="color:var(--gold-light)">Let's Build Together</div>
+  <h2>Ready to Build Your<br><span>Dream Home?</span></h2>
+  <p>Get a free consultation with Edwin Li. No pressure, no obligation — just an honest conversation about your vision.</p>
+  <div class="cta-options">
+    <a href="tel:+14085550100" class="cta-phone">📞 (408) 555-0100</a>
+    <a href="mailto:info@squarebuildersgroup.com" class="cta-phone">✉️ info@squarebuildersgroup.com</a>
+  </div>
+  <div class="contact-form">
+    <h3 style="color:#fff;font-size:20px;margin-bottom:24px">Request Free Consultation</h3>
+    <div class="form-row">
+      <div class="form-group"><label>First Name</label><input type="text" placeholder="John"></div>
+      <div class="form-group"><label>Last Name</label><input type="text" placeholder="Smith"></div>
+    </div>
+    <div class="form-group"><label>Email</label><input type="email" placeholder="john@example.com"></div>
+    <div class="form-group"><label>Phone</label><input type="tel" placeholder="(408) 555-0100"></div>
+    <div class="form-group"><label>Project Type</label>
+      <select><option>Select a service...</option><option>Design Build</option><option>New Construction</option><option>Kitchen Remodel</option><option>Home Addition / ADU</option><option>Whole-Home Renovation</option><option>Other</option></select>
+    </div>
+    <div class="form-group"><label>Tell us about your project</label><textarea placeholder="Location, size, timeline, budget range..."></textarea></div>
+    <button class="form-submit">Get My Free Consultation →</button>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="nav-logo">Square <span>Builders</span> Group</div>
+      <p>Bay Area's premier custom home builder since 2004. Serving Palo Alto, Saratoga, Sunnyvale, Mountain View, and San Jose with exceptional craftsmanship and honest collaboration.</p>
+    </div>
+    <div class="footer-col"><h4>Services</h4><ul><li>Design Build</li><li>New Construction</li><li>Kitchen Remodeling</li><li>Home Additions</li><li>ADU Construction</li></ul></div>
+    <div class="footer-col"><h4>Service Areas</h4><ul><li>Palo Alto</li><li>Saratoga</li><li>Sunnyvale</li><li>Mountain View</li><li>San Jose</li></ul></div>
+    <div class="footer-col"><h4>Contact</h4><ul><li>📞 (408) 555-0100</li><li>✉️ info@squarebuildersgroup.com</li><li>📍 Bay Area, CA</li></ul></div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Square Builders Group. All rights reserved.</p>
+    <div class="footer-license"><span class="license-badge">CA Licensed GC</span><span class="license-badge">Fully Insured</span></div>
+  </div>
+</footer>
+
+</body>
+</html>
