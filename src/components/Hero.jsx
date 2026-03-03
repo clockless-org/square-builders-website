@@ -10,17 +10,7 @@ export default function Hero() {
   return (
     <section className="relative h-screen min-h-[700px] flex items-center justify-center overflow-hidden">
       <div className="absolute inset-0">
-        <video
-            autoPlay
-            muted
-            loop
-            playsInline
-            poster="/images/hero-main.jpg"
-            className="w-full h-full object-cover"
-          >
-            <source src="/images/hero-video.mp4" type="video/mp4" />
-            <img src="/images/hero-main.jpg" alt="Square Builders Group construction site" className="w-full h-full object-cover" />
-          </video>
+        <motion.img initial={{ scale: 1.1 }} animate={{ scale: 1 }} transition={{ duration: 10, ease: 'easeOut' }} src="/images/hero-main.jpg" alt="Square Builders Group construction site" className="w-full h-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-b from-dark/90 via-dark/60 to-dark/95" />
       </div>
 
