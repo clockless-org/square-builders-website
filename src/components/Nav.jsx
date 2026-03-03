@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { useLang } from '../context/LangContext'
 
 export default function Nav() {
-  const { t, lang, toggleLang } = useLang()
+  const { t, lang, toggleLang, langLabel } = useLang()
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
 
@@ -51,7 +51,7 @@ export default function Nav() {
               onClick={toggleLang}
               className="px-3 py-1.5 text-xs font-semibold tracking-wider text-gold border border-gold/30 rounded-sm hover:bg-gold/10 transition-all duration-300 uppercase"
             >
-              {lang === 'en' ? '中文' : 'EN'}
+              {lang === 'en' ? '中文' : lang === 'zh' ? 'ES' : 'EN'}
             </button>
             <a href="#contact" className="hidden md:inline-flex items-center px-6 py-2.5 bg-gradient-to-r from-gold to-[#B8860B] text-dark font-semibold text-sm tracking-wide hover:shadow-[0_0_20px_rgba(212,175,55,0.4)] transition-all duration-300 rounded-sm">
               {t.nav.cta}
@@ -76,7 +76,7 @@ export default function Nav() {
               </motion.a>
             ))}
             <motion.button onClick={toggleLang} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.45 }} className="text-gold text-xl border border-gold/30 px-6 py-2 rounded-sm">
-              {lang === 'en' ? '切换中文' : 'Switch to English'}
+              {lang === 'en' ? '中文 / ES' : lang === 'zh' ? 'EN / ES' : 'EN / 中文'}
             </motion.button>
             <motion.a href="#contact" onClick={() => setMobileOpen(false)} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5 }} className="mt-6 px-10 py-4 bg-gradient-to-r from-gold to-[#B8860B] text-dark font-semibold tracking-wide rounded-sm">
               {t.nav.cta}

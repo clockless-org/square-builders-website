@@ -151,4 +151,80 @@ export const translations = {
       copyright: 'Square Builders Group. 版权所有。', links: ['隐私政策', '服务条款', '许可证'],
     },
   },
+  es: {
+    nav: {
+      about: 'Nosotros', services: 'Servicios', projects: 'Proyectos',
+      testimonials: 'Testimonios', contact: 'Contacto', cta: 'Inicie Su Proyecto',
+    },
+    hero: {
+      badge: 'Contratista General Premium del Área de la Bahía',
+      title1: 'Si Puede Soñarlo,', title2: 'Nosotros Lo Construimos',
+      desc: 'Transformando hogares en Silicon Valley con más de 20 años de artesanía excepcional. Desde el diseño hasta la finalización, su visión es nuestro plano.',
+      cta1: 'Agendar Consulta', cta2: 'Ver Nuestro Trabajo', scroll: 'Desplazar',
+    },
+    stats: [
+      { value: '20+', label: 'Años de Experiencia' }, { value: '150+', label: 'Proyectos Completados' },
+      { value: '5★', label: 'Calificación de Clientes' }, { value: '100%', label: 'Equipo Local de la Bahía' },
+    ],
+    about: {
+      quote: 'Durante más de dos décadas, me ha guiado una idea simple: construir espacios que reflejen la visión de las personas. Cada proyecto es una oportunidad para crear algo duradero y personal, moldeado por el espíritu de innovación del Área de la Bahía.',
+      quoteName: 'Edwin Li', quoteTitle: 'CEO y Fundador, Square Builders Group',
+      tag: 'Nuestra Historia', title: 'Excelencia en', titleBreak: 'Construcción Desde 2000',
+      p1: 'En Square Builders Group, estamos redefiniendo lo que significa construir bien: combinando artesanía experta, colaboración honesta y un profundo respeto por las visiones de nuestros clientes.',
+      p2: 'Creemos en construir con propósito. Cada proyecto comienza escuchando, avanza con precisión y concluye con el tipo de calidad que habla por sí misma.',
+      features: [
+        { title: 'Soluciones Integrales', desc: 'Diseño, permisos y construcción bajo un mismo techo para una experiencia perfecta.' },
+        { title: 'Gestión Avanzada de Proyectos', desc: 'Soporte individualizado, a tiempo y dentro del presupuesto.' },
+        { title: 'Estándares de Calidad Excepcionales', desc: 'Artesanía de primer nivel con los mejores materiales, garantizando belleza duradera.' },
+      ],
+    },
+    services: {
+      tag: 'Lo Que Hacemos', title: 'Nuestros Servicios',
+      desc: 'Desde el primer boceto hasta la entrega final, nos encargamos de cada fase de su proyecto.',
+      items: [
+        { title: 'Diseño y Construcción', description: 'Una solución integral que combina diseño y construcción para un proceso cohesivo y eficiente de principio a fin.', features: ['Diseño Arquitectónico', 'Gestión de Permisos', 'Diseño de Interiores', 'Entrega Llave en Mano'] },
+        { title: 'Nueva Construcción', description: 'Hogares personalizados construidos con precisión, artesanía de calidad y atención al detalle, creando espacios que cumplen todas sus expectativas.', features: ['Planos Personalizados', 'Ingeniería Estructural', 'Integración de Hogar Inteligente', 'Eficiencia Energética'] },
+        { title: 'Mejora Integral', description: 'Renovaciones y mejoras que elevan su espacio, ya sea una remodelación de cocina, extensión de vivienda o mejoras estructurales.', features: ['Remodelación de Cocina y Baño', 'Construcción ADU', 'Ampliaciones', 'Renovación Completa'] },
+      ],
+    },
+    projects: {
+      tag: 'Portafolio', title: 'Proyectos Destacados',
+      desc: 'Cada proyecto refleja nuestro compromiso con la excelencia y la visión única de nuestros clientes.',
+      items: [
+        { title: 'The Vista Room', category: 'Remodelación', description: 'Un espacio de vida sereno con amplias vistas al valle, diseñado para una vida cotidiana elevada.' },
+        { title: 'The Overlook', category: 'Nueva Construcción', description: 'Una elegante residencia en la cima de 7,488 pies cuadrados con impresionantes vistas panorámicas y espacios al aire libre.' },
+        { title: 'The Daylight Kitchen', category: 'Diseño y Construcción', description: 'Cocina espaciosa y luminosa con tragaluz, acabados cálidos y una gran isla central.' },
+      ],
+    },
+    areas: { tag: 'Dónde Construimos', title: 'Áreas de Servicio', desc: 'Ubicaciones de proyectos desde 2025' },
+    testimonials: {
+      tag: 'Historias de Clientes', title: 'Lo Que Dicen Nuestros Clientes',
+      items: [
+        { quote: 'Square Builders transformó nuestro antiguo rancho en Palo Alto en una obra maestra moderna. Edwin y su equipo superaron todas las expectativas.', author: 'Michael & Sarah T.', location: 'Palo Alto' },
+        { quote: 'Desde el diseño hasta la entrega final, el proceso fue impecable. Su atención al detalle es incomparable en el Área de la Bahía.', author: 'Jennifer L.', location: 'Saratoga' },
+        { quote: 'Les confiamos la construcción de nuestro hogar soñado y entregaron más allá de lo que imaginamos. Verdaderos artesanos con integridad.', author: 'David & Amy K.', location: 'Mountain View' },
+      ],
+    },
+    faq: {
+      tag: 'Preguntas Frecuentes', title: 'Preguntas Comunes',
+      items: [
+        { q: '¿Cuánto tiempo toma un proyecto típico?', a: 'Los plazos varían según el alcance. Una remodelación de cocina generalmente toma 8-12 semanas, mientras que una nueva construcción puede variar de 10-18 meses. Proporcionamos cronogramas detallados durante la consulta y lo mantenemos actualizado.' },
+        { q: '¿Manejan permisos y diseño?', a: 'Absolutamente. Ofrecemos un verdadero servicio de diseño-construcción, gestionando todo desde el diseño arquitectónico inicial hasta los permisos, construcción e inspección final. Un equipo, un punto de contacto, cero complicaciones.' },
+        { q: '¿Qué áreas atienden?', a: 'Servimos el gran Área de la Bahía con enfoque en Palo Alto, Saratoga, Sunnyvale, Mountain View y San José. Para proyectos excepcionales, consideramos ubicaciones en todo Silicon Valley.' },
+        { q: '¿Cómo funciona su sistema de precios?', a: 'Proporcionamos estimaciones transparentes y detalladas después de una consulta inicial y visita al sitio. Nuestros precios son competitivos y reflejan los materiales y la artesanía premium que entregamos. Sin cargos ocultos, sin sorpresas.' },
+        { q: '¿Puedo ver ejemplos de trabajos anteriores?', a: 'Por supuesto. Además de los proyectos destacados, mantenemos un portafolio completo y podemos organizar visitas a proyectos terminados con permiso del cliente. Agende una consulta y le mostraremos ejemplos relevantes.' },
+      ],
+    },
+    contact: {
+      tag: 'Comience Ahora', title: '¿Listo Para Construir Su Sueño?',
+      desc: 'Comparta su correo electrónico y nos comunicaremos para programar una consulta gratuita. Hagamos realidad su visión.',
+      placeholder: 'Ingrese su correo electrónico', cta: 'Contáctenos', thanks: '¡Gracias! Nos pondremos en contacto pronto.',
+    },
+    footer: {
+      desc: 'Contratista general premium en el Área de la Bahía. Diseño-construcción, nueva construcción y remodelación.',
+      servicesTitle: 'Servicios', serviceItems: ['Diseño y Construcción', 'Nueva Construcción', 'Mejora Integral'],
+      areasTitle: 'Áreas de Servicio', moreAreas: '+ 8 ciudades más', contactTitle: 'Contacto',
+      copyright: 'Square Builders Group. Todos los derechos reservados.', links: ['Política de Privacidad', 'Términos de Servicio', 'Licencia'],
+    },
+  },
 }
