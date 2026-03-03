@@ -5,13 +5,16 @@ export default function Hero() {
     <section className="relative h-screen min-h-[700px] flex items-center justify-center overflow-hidden">
       {/* Background Image */}
       <div className="absolute inset-0">
-        <img
+        <motion.img
+          initial={{ scale: 1.1 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 10, ease: 'easeOut' }}
           src="/images/hero-main.jpg"
           alt="Square Builders Group construction site"
           className="w-full h-full object-cover"
         />
         {/* Dark gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-navy/80 via-navy/60 to-navy/90" />
+        <div className="absolute inset-0 bg-gradient-to-b from-dark/90 via-dark/60 to-dark/95" />
       </div>
 
       {/* Animated Gold Geometric Lines */}
@@ -19,9 +22,9 @@ export default function Hero() {
         <svg className="absolute inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
           <defs>
             <linearGradient id="goldLine" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="#C9A84C" stopOpacity="0" />
-              <stop offset="50%" stopColor="#C9A84C" stopOpacity="0.3" />
-              <stop offset="100%" stopColor="#C9A84C" stopOpacity="0" />
+              <stop offset="0%" stopColor="#D4AF37" stopOpacity="0" />
+              <stop offset="50%" stopColor="#D4AF37" stopOpacity="0.4" />
+              <stop offset="100%" stopColor="#D4AF37" stopOpacity="0" />
             </linearGradient>
           </defs>
           {/* Diagonal lines */}
@@ -36,7 +39,7 @@ export default function Hero() {
               strokeWidth="1"
               initial={{ pathLength: 0, opacity: 0 }}
               animate={{ pathLength: 1, opacity: 1 }}
-              transition={{ duration: 2, delay: i * 0.2, ease: 'easeInOut' }}
+              transition={{ duration: 2.5, delay: i * 0.2, ease: 'easeInOut' }}
             />
           ))}
           {/* Horizontal lines */}
@@ -47,17 +50,17 @@ export default function Hero() {
               y1={`${20 + i * 20}%`}
               x2="100%"
               y2={`${20 + i * 20}%`}
-              stroke="#C9A84C"
+              stroke="#D4AF37"
               strokeWidth="0.5"
-              strokeOpacity="0.1"
+              strokeOpacity="0.15"
               initial={{ pathLength: 0 }}
               animate={{ pathLength: 1 }}
-              transition={{ duration: 3, delay: 1 + i * 0.3 }}
+              transition={{ duration: 3.5, delay: 1 + i * 0.3 }}
             />
           ))}
         </svg>
         {/* Subtle radial glow */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gold/5 rounded-full blur-3xl" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[900px] bg-gold/5 rounded-full blur-[100px]" />
       </div>
 
       {/* Content */}
@@ -67,7 +70,7 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.5 }}
         >
-          <span className="inline-block text-gold text-sm tracking-[0.35em] uppercase font-sans font-medium mb-6">
+          <span className="inline-block text-gold text-sm tracking-[0.4em] uppercase font-sans font-semibold mb-6">
             Premium Bay Area General Contractor
           </span>
         </motion.div>
@@ -76,20 +79,20 @@ export default function Hero() {
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.8 }}
-          className="font-serif text-cream text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold leading-[1.05] mb-8"
+          className="font-serif text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold leading-[1.1] mb-8 drop-shadow-2xl"
         >
-          If You Can Dream It,
+          <span className="text-gradient-cream">If You Can Dream It,</span>
           <br />
-          <span className="text-gold">We Can Build It</span>
+          <span className="text-gradient-gold drop-shadow-lg">We Can Build It</span>
         </motion.h1>
 
         <motion.p
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 1.1 }}
-          className="text-cream/60 text-lg md:text-xl max-w-2xl mx-auto mb-12 font-light leading-relaxed"
+          className="text-cream/70 text-lg md:text-xl max-w-2xl mx-auto mb-12 font-light leading-relaxed"
         >
-          Transforming Silicon Valley homes with 20+ years of exceptional craftsmanship. 
+          Transforming Silicon Valley homes with 20+ years of exceptional craftsmanship.
           From design to completion, your vision is our blueprint.
         </motion.p>
 
@@ -97,17 +100,17 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1.4 }}
-          className="flex flex-col sm:flex-row gap-4 justify-center"
+          className="flex flex-col sm:flex-row gap-6 justify-center"
         >
           <a
             href="#contact"
-            className="px-10 py-4 bg-gold text-navy font-semibold text-base tracking-wide hover:bg-gold-light transition-all duration-300 hover:shadow-lg hover:shadow-gold/20"
+            className="px-10 py-4 bg-gradient-to-r from-gold to-[#B8860B] text-dark font-bold text-base tracking-wider hover:shadow-[0_0_30px_rgba(212,175,55,0.4)] hover:-translate-y-1 transition-all duration-300 rounded-sm"
           >
             Schedule Consultation
           </a>
           <a
             href="#projects"
-            className="px-10 py-4 border border-cream/30 text-cream font-medium text-base tracking-wide hover:border-gold hover:text-gold transition-all duration-300"
+            className="px-10 py-4 border border-cream/20 text-cream font-medium text-base tracking-wider hover:border-gold hover:text-gold hover:shadow-[0_0_30px_rgba(201,168,76,0.15)] hover:-translate-y-1 transition-all duration-300 rounded-sm glass-panel"
           >
             View Our Work
           </a>
@@ -121,7 +124,7 @@ export default function Hero() {
         transition={{ delay: 2 }}
         className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
       >
-        <span className="text-cream/40 text-xs tracking-[0.2em] uppercase">Scroll</span>
+        <span className="text-cream/50 text-xs tracking-[0.2em] uppercase font-medium">Scroll</span>
         <motion.div
           animate={{ y: [0, 8, 0] }}
           transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}

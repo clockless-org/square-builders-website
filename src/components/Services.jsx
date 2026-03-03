@@ -35,31 +35,38 @@ const services = [
 
 export default function Services() {
   return (
-    <section id="services" className="py-32 md:py-40 bg-navy">
-      <div className="max-w-5xl mx-auto px-8 lg:px-12">
+    <section id="services" className="py-32 md:py-40 bg-dark relative overflow-hidden">
+      {/* Background glow effects */}
+      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-navy-light/40 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/3" />
+      <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-gold/5 rounded-full blur-[120px] translate-y-1/2 -translate-x-1/3" />
+
+      <div className="max-w-6xl mx-auto px-8 lg:px-12 relative z-10">
         {/* Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-20 flex flex-col items-center">
           <motion.span
             initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6 }}
-            className="text-gold text-xs tracking-[0.3em] uppercase font-semibold"
+            className="text-gold text-sm tracking-[0.4em] uppercase font-semibold mb-4"
           >
             What We Do
           </motion.span>
           <motion.h2
             initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="font-serif text-cream text-4xl md:text-5xl font-bold mt-4"
+            className="font-serif text-5xl md:text-6xl font-bold text-gradient-cream"
           >
             Our Services
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-cream/40 text-base mt-4 max-w-lg mx-auto leading-relaxed"
+            className="text-cream/50 text-lg mt-6 max-w-xl mx-auto leading-relaxed"
           >
             From the first sketch to the final walkthrough, we handle every phase of your project.
           </motion.p>
@@ -70,28 +77,29 @@ export default function Services() {
           {services.map((service, i) => (
             <motion.div
               key={service.title}
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: i * 0.15 }}
-              whileHover={{ y: -6 }}
-              className="group relative bg-white/5 border border-white/10 p-8 hover:border-gold/40 transition-all duration-500 flex flex-col"
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.7, delay: i * 0.15 + 0.2 }}
+              whileHover={{ y: -8 }}
+              className="group flex flex-col rounded-xl glass-panel glow-border p-10 h-full"
             >
-              <div className="absolute top-0 left-0 right-0 h-px bg-gold scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+              <div className="text-gold mb-8 opacity-90 group-hover:scale-110 group-hover:opacity-100 transition-all duration-500 drop-shadow-[0_0_15px_rgba(212,175,55,0.4)]">
+                {service.icon}
+              </div>
 
-              <div className="text-gold mb-6">{service.icon}</div>
-
-              <h3 className="font-serif text-cream text-xl font-semibold mb-3">
+              <h3 className="font-serif text-2xl font-bold mb-4 text-cream">
                 {service.title}
               </h3>
 
-              <p className="text-cream/50 text-sm leading-relaxed mb-6 flex-1">
+              <p className="text-cream/60 text-base leading-relaxed mb-8 flex-1">
                 {service.description}
               </p>
 
-              <ul className="space-y-2.5 mt-auto">
+              <ul className="space-y-3 mt-auto">
                 {service.features.map((feat) => (
-                  <li key={feat} className="flex items-center gap-3 text-cream/60 text-sm">
-                    <div className="w-1 h-1 bg-gold rounded-full shrink-0" />
+                  <li key={feat} className="flex items-center gap-3 text-cream/70 text-sm font-medium">
+                    <div className="w-1.5 h-1.5 bg-gradient-to-r from-gold to-[#B8860B] rounded-full shrink-0 shadow-[0_0_8px_rgba(212,175,55,0.6)]" />
                     {feat}
                   </li>
                 ))}

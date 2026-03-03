@@ -8,26 +8,49 @@ const cities = [
 
 export default function Areas() {
   return (
-    <section className="py-32 md:py-40 bg-navy">
-      <div className="max-w-5xl mx-auto px-8 lg:px-12">
-        <div className="text-center mb-12">
-          <span className="text-gold text-xs tracking-[0.3em] uppercase font-medium">
+    <section className="py-32 md:py-40 bg-dark relative overflow-hidden">
+      {/* Background Glow */}
+      <div className="absolute inset-0 bg-gradient-to-t from-dark via-navy-light/10 to-dark pointer-events-none" />
+
+      <div className="max-w-5xl mx-auto px-8 lg:px-12 relative z-10">
+        <div className="text-center mb-16">
+          <motion.span
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-gold text-sm tracking-[0.4em] uppercase font-semibold"
+          >
             Where We Build
-          </span>
-          <h2 className="font-serif text-cream text-3xl md:text-4xl font-bold mt-4 mb-3">
+          </motion.span>
+          <motion.h2
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="font-serif text-5xl md:text-6xl font-bold mt-4 mb-4 text-gradient-cream"
+          >
             Service Areas
-          </h2>
-          <p className="text-cream/40 text-base leading-relaxed">2025–present project locations</p>
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="text-cream/50 text-lg leading-relaxed"
+          >
+            2025–present project locations
+          </motion.p>
         </div>
 
-        <div className="flex flex-wrap justify-center gap-3">
+        <div className="flex flex-wrap justify-center gap-4">
           {cities.map((city, i) => (
             <motion.div
               key={city}
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.4, delay: i * 0.05 }}
-              className="px-6 py-3 border border-cream/15 text-cream/80 text-sm tracking-wide hover:border-gold hover:text-gold transition-all duration-300 cursor-default"
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              whileInView={{ opacity: 1, scale: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.5, delay: i * 0.05 }}
+              className="px-8 py-3.5 glass-panel rounded-full text-cream/80 text-sm md:text-base font-medium tracking-wide hover:border-gold hover:text-gold hover:shadow-[0_0_20px_rgba(212,175,55,0.2)] hover:-translate-y-1 transition-all duration-300 cursor-default"
             >
               {city}
             </motion.div>

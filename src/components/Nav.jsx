@@ -25,25 +25,22 @@ export default function Nav() {
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.6, ease: 'easeOut' }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-          scrolled
-            ? 'bg-navy/95 backdrop-blur-md shadow-lg shadow-navy/20'
-            : 'bg-transparent'
-        }`}
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? 'glass-nav py-2' : 'bg-transparent py-4'
+          }`}
       >
-        <div className="max-w-7xl mx-auto flex items-center justify-between px-6 lg:px-8 h-20">
+        <div className="max-w-7xl mx-auto flex items-center justify-between px-6 lg:px-8 h-16">
           {/* Logo */}
           <a href="#" className="flex items-center gap-3 group">
             <img
               src="/images/logo.png"
               alt="Square Builders Group"
-              className="w-10 h-10 object-contain brightness-0 invert"
+              className="w-10 h-10 object-contain brightness-0 invert transition-transform duration-500 group-hover:scale-110"
             />
             <div className="hidden sm:block">
-              <span className="text-cream font-serif text-lg font-semibold tracking-wide">
+              <span className="text-gradient-cream font-serif text-xl font-bold tracking-wide">
                 Square Builders
               </span>
-              <span className="block text-gold/70 text-[10px] tracking-[0.3em] uppercase font-sans">
+              <span className="block text-gold/80 text-[10px] tracking-[0.3em] uppercase font-sans mt-0.5">
                 Group
               </span>
             </div>
@@ -66,7 +63,7 @@ export default function Nav() {
           <div className="flex items-center gap-4">
             <a
               href="#contact"
-              className="hidden md:inline-flex items-center px-6 py-2.5 bg-gold text-navy font-semibold text-sm tracking-wide hover:bg-gold-light transition-colors duration-300"
+              className="hidden md:inline-flex items-center px-6 py-2.5 bg-gradient-to-r from-gold to-[#B8860B] text-dark font-semibold text-sm tracking-wide hover:shadow-[0_0_20px_rgba(212,175,55,0.4)] transition-all duration-300 rounded-sm"
             >
               Start Your Project
             </a>
@@ -92,7 +89,7 @@ export default function Nav() {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="fixed inset-0 z-40 bg-navy/98 backdrop-blur-lg flex flex-col items-center justify-center gap-8 lg:hidden"
+            className="fixed inset-0 z-40 bg-dark/98 backdrop-blur-xl flex flex-col items-center justify-center gap-8 lg:hidden"
           >
             {links.map((link, i) => (
               <motion.a
@@ -102,18 +99,21 @@ export default function Nav() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.1 }}
-                className="text-cream text-2xl font-serif tracking-wide hover:text-gold transition-colors"
+                className="text-cream text-3xl font-serif tracking-wide hover:text-gold transition-colors"
               >
                 {link.label}
               </motion.a>
             ))}
-            <a
+            <motion.a
               href="#contact"
               onClick={() => setMobileOpen(false)}
-              className="mt-4 px-8 py-3 bg-gold text-navy font-semibold tracking-wide"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5 }}
+              className="mt-6 px-10 py-4 bg-gradient-to-r from-gold to-[#B8860B] text-dark font-semibold tracking-wide rounded-sm"
             >
               Start Your Project
-            </a>
+            </motion.a>
           </motion.div>
         )}
       </AnimatePresence>
