@@ -1,7 +1,6 @@
 import { LangProvider } from './context/LangContext'
 import Nav from './components/Nav'
 import Hero from './components/Hero'
-import DroneVideo from './components/DroneVideo'
 import Stats from './components/Stats'
 import About from './components/About'
 import Services from './components/Services'
@@ -19,7 +18,6 @@ export default function App() {
       <div className="overflow-x-hidden">
         <Nav />
         <Hero />
-        <DroneVideo />
         <Stats />
         <About />
         <Services />

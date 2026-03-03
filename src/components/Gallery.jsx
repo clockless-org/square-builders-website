@@ -73,6 +73,28 @@ export default function Gallery() {
           <motion.p initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }} className="text-cream/50 text-lg leading-relaxed max-w-2xl mx-auto">{t.desc}</motion.p>
         </div>
 
+        <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1 }}
+            className="mb-16"
+          >
+            <div className="relative rounded-2xl overflow-hidden glow-border aspect-video">
+              <video
+                autoPlay
+                muted
+                loop
+                playsInline
+                poster="/images/hero-main.jpg"
+                className="w-full h-full object-cover"
+              >
+                <source src="/images/hero-video.mp4" type="video/mp4" />
+              </video>
+              <div className="absolute inset-0 bg-gradient-to-t from-dark/30 via-transparent to-dark/20 pointer-events-none" />
+            </div>
+          </motion.div>
+
         <div className="space-y-16">
           {galleryProjects.map((project, pi) => (
             <motion.div
