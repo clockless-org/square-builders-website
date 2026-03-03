@@ -18,10 +18,9 @@ const cities = [
   { name: 'Belmont', lat: 37.5202, lng: -122.2758 },
 ]
 
-// Map bounds for Bay Area (lat/lng to SVG coords)
 const bounds = {
-  minLat: 37.20, maxLat: 37.62,
-  minLng: -122.45, maxLng: -121.82,
+  minLat: 37.15, maxLat: 37.65,
+  minLng: -122.50, maxLng: -121.75,
 }
 
 function toSvg(lat, lng) {
@@ -30,17 +29,79 @@ function toSvg(lat, lng) {
   return { x, y }
 }
 
-// Bay outline paths (simplified Peninsula + South Bay)
-const bayWater = `
-  M 320,0 Q 340,80 300,120 Q 260,160 280,220 Q 300,280 340,320
-  Q 380,360 420,400 Q 480,440 520,480 Q 560,520 580,560 L 580,600
-  L 800,600 L 800,0 Z
-`
+// Convex hull of service area (expanded outward for visual coverage)
+const coverageHull = [
+  { lat: 37.62, lng: -122.42 },  // north of Hillsborough
+  { lat: 37.55, lng: -122.15 },  // east of Belmont
+  { lat: 37.50, lng: -122.10 },  // between Menlo/PA
+  { lat: 37.44, lng: -122.05 },  // east of Palo Alto
+  { lat: 37.40, lng: -121.82 },  // east of San Jose
+  { lat: 37.30, lng: -121.80 },  // SE of San Jose
+  { lat: 37.22, lng: -121.88 },  // south of Campbell
+  { lat: 37.20, lng: -122.00 },  // south of Saratoga
+  { lat: 37.22, lng: -122.10 },  // SW of Saratoga
+  { lat: 37.30, lng: -122.15 },  // west of Cupertino
+  { lat: 37.40, lng: -122.20 },  // west of Los Altos
+  { lat: 37.50, lng: -122.30 },  // west of Atherton
+  { lat: 37.60, lng: -122.43 },  // west of Burlingame
+]
 
-const coastline = `
-  M 0,0 L 0,600 L 200,600 Q 220,540 180,480 Q 140,420 160,360
-  Q 180,300 200,240 Q 220,180 200,120 Q 180,60 200,0 Z
-`
+const hullPath = coverageHull.map((p, i) => {
+  const { x, y } = toSvg(p.lat, p.lng)
+  return `${i === 0 ? 'M' : 'L'} ${x},${y}`
+}).join(' ') + ' Z'
+
+// Bay water shape
+const bayShore = [
+  { lat: 37.65, lng: -122.18 },
+  { lat: 37.60, lng: -122.22 },
+  { lat: 37.55, lng: -122.18 },
+  { lat: 37.52, lng: -122.12 },
+  { lat: 37.48, lng: -122.08 },
+  { lat: 37.44, lng: -122.05 },
+  { lat: 37.40, lng: -122.00 },
+  { lat: 37.38, lng: -121.96 },
+  { lat: 37.36, lng: -121.92 },
+  { lat: 37.34, lng: -121.88 },
+  { lat: 37.32, lng: -121.86 },
+  { lat: 37.30, lng: -121.84 },
+  { lat: 37.28, lng: -121.82 },
+  { lat: 37.25, lng: -121.82 },
+  { lat: 37.22, lng: -121.82 },
+  { lat: 37.20, lng: -121.82 },
+  { lat: 37.15, lng: -121.80 },
+  { lat: 37.15, lng: -121.75 },
+  { lat: 37.65, lng: -121.75 },
+  { lat: 37.65, lng: -122.18 },
+]
+
+const bayPath = bayShore.map((p, i) => {
+  const { x, y } = toSvg(p.lat, p.lng)
+  return `${i === 0 ? 'M' : 'L'} ${x},${y}`
+}).join(' ') + ' Z'
+
+// East shore (Fremont side)
+const eastShore = [
+  { lat: 37.65, lng: -122.10 },
+  { lat: 37.60, lng: -122.13 },
+  { lat: 37.55, lng: -122.10 },
+  { lat: 37.50, lng: -122.05 },
+  { lat: 37.45, lng: -122.00 },
+  { lat: 37.40, lng: -121.95 },
+  { lat: 37.35, lng: -121.90 },
+  { lat: 37.30, lng: -121.86 },
+  { lat: 37.25, lng: -121.83 },
+  { lat: 37.20, lng: -121.82 },
+  { lat: 37.15, lng: -121.82 },
+  { lat: 37.15, lng: -121.75 },
+  { lat: 37.65, lng: -121.75 },
+  { lat: 37.65, lng: -122.10 },
+]
+
+const eastPath = eastShore.map((p, i) => {
+  const { x, y } = toSvg(p.lat, p.lng)
+  return `${i === 0 ? 'M' : 'L'} ${x},${y}`
+}).join(' ') + ' Z'
 
 export default function Areas() {
   const { t } = useLang()
@@ -65,75 +126,107 @@ export default function Areas() {
         >
           {/* Map */}
           <div className="lg:col-span-3 relative">
-            <div className="glass-panel rounded-2xl p-6 md:p-8 overflow-hidden">
+            <div className="glass-panel rounded-2xl p-4 md:p-6 overflow-hidden">
               <svg viewBox="0 0 800 600" className="w-full h-auto" xmlns="http://www.w3.org/2000/svg">
                 <defs>
                   <radialGradient id="cityGlow" cx="50%" cy="50%" r="50%">
                     <stop offset="0%" stopColor="#D4AF37" stopOpacity="0.6" />
                     <stop offset="100%" stopColor="#D4AF37" stopOpacity="0" />
                   </radialGradient>
-                  <radialGradient id="cityGlowHover" cx="50%" cy="50%" r="50%">
-                    <stop offset="0%" stopColor="#D4AF37" stopOpacity="1" />
-                    <stop offset="100%" stopColor="#D4AF37" stopOpacity="0" />
-                  </radialGradient>
                   <filter id="glow">
                     <feGaussianBlur stdDeviation="3" result="blur" />
-                    <feMerge>
-                      <feMergeNode in="blur" />
-                      <feMergeNode in="SourceGraphic" />
-                    </feMerge>
+                    <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
                   </filter>
-                  <linearGradient id="roadGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#FAF9F6" stopOpacity="0.03" />
-                    <stop offset="50%" stopColor="#FAF9F6" stopOpacity="0.08" />
-                    <stop offset="100%" stopColor="#FAF9F6" stopOpacity="0.03" />
+                  <filter id="bigGlow">
+                    <feGaussianBlur stdDeviation="20" />
+                  </filter>
+                  <linearGradient id="coverageFill" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="#D4AF37" stopOpacity="0.15" />
+                    <stop offset="50%" stopColor="#D4AF37" stopOpacity="0.08" />
+                    <stop offset="100%" stopColor="#D4AF37" stopOpacity="0.15" />
                   </linearGradient>
                 </defs>
 
-                {/* Background */}
-                <rect width="800" height="600" fill="#0B162C" rx="16" />
+                {/* Background - land */}
+                <rect width="800" height="600" fill="#0F1E35" rx="12" />
 
                 {/* Bay water */}
-                <path d={bayWater} fill="#0a1220" opacity="0.8" />
+                <path d={bayPath} fill="#0a1525" opacity="0.9" />
 
-                {/* Grid lines (subtle road network feel) */}
+                {/* Grid */}
                 {[...Array(12)].map((_, i) => (
-                  <line key={`h${i}`} x1="0" y1={i * 50} x2="800" y2={i * 50} stroke="url(#roadGrad)" strokeWidth="0.5" />
+                  <line key={`h${i}`} x1="0" y1={i * 50} x2="800" y2={i * 50} stroke="#FAF9F6" strokeWidth="0.3" strokeOpacity="0.04" />
                 ))}
                 {[...Array(16)].map((_, i) => (
-                  <line key={`v${i}`} x1={i * 50} y1="0" x2={i * 50} y2="600" stroke="url(#roadGrad)" strokeWidth="0.5" />
+                  <line key={`v${i}`} x1={i * 50} y1="0" x2={i * 50} y2="600" stroke="#FAF9F6" strokeWidth="0.3" strokeOpacity="0.04" />
                 ))}
 
-                {/* Highway 101 approximate path */}
+                {/* Coverage area - glow behind */}
+                <path d={hullPath} fill="#D4AF37" opacity="0.15" filter="url(#bigGlow)" />
+
+                {/* Coverage area - main fill */}
+                <path d={hullPath} fill="url(#coverageFill)" stroke="#D4AF37" strokeWidth="1.5" strokeOpacity="0.4" strokeDasharray="6,3">
+                  <animate attributeName="stroke-dashoffset" values="0;18" dur="4s" repeatCount="indefinite" />
+                </path>
+
+                {/* Highway 101 */}
                 <path
-                  d="M 350,30 Q 330,100 310,180 Q 290,260 320,340 Q 350,420 400,480 Q 450,540 500,580"
-                  fill="none" stroke="#FAF9F6" strokeWidth="1.5" strokeOpacity="0.08"
-                  strokeDasharray="8,4"
+                  d={(() => {
+                    const pts = [
+                      [37.62, -122.38], [37.58, -122.34], [37.55, -122.28],
+                      [37.50, -122.22], [37.46, -122.18], [37.43, -122.14],
+                      [37.40, -122.08], [37.38, -122.04], [37.35, -121.96],
+                      [37.33, -121.90], [37.30, -121.86],
+                    ].map(([lat, lng]) => toSvg(lat, lng))
+                    return pts.map((p, i) => `${i === 0 ? 'M' : 'L'} ${p.x},${p.y}`).join(' ')
+                  })()}
+                  fill="none" stroke="#FAF9F6" strokeWidth="1.5" strokeOpacity="0.1" strokeDasharray="8,4"
+                />
+                {/* 101 label */}
+                {(() => {
+                  const p = toSvg(37.50, -122.22)
+                  return <text x={p.x + 10} y={p.y} fill="#FAF9F6" fillOpacity="0.15" fontSize="10" fontFamily="DM Sans">101</text>
+                })()}
+
+                {/* Highway 280 */}
+                <path
+                  d={(() => {
+                    const pts = [
+                      [37.60, -122.42], [37.55, -122.35], [37.50, -122.28],
+                      [37.46, -122.24], [37.42, -122.18], [37.38, -122.12],
+                      [37.34, -122.06], [37.30, -122.00], [37.26, -121.94],
+                    ].map(([lat, lng]) => toSvg(lat, lng))
+                    return pts.map((p, i) => `${i === 0 ? 'M' : 'L'} ${p.x},${p.y}`).join(' ')
+                  })()}
+                  fill="none" stroke="#FAF9F6" strokeWidth="1.5" strokeOpacity="0.1" strokeDasharray="8,4"
+                />
+                {(() => {
+                  const p = toSvg(37.46, -122.25)
+                  return <text x={p.x + 10} y={p.y} fill="#FAF9F6" fillOpacity="0.15" fontSize="10" fontFamily="DM Sans">280</text>
+                })()}
+
+                {/* I-880 */}
+                <path
+                  d={(() => {
+                    const pts = [
+                      [37.40, -121.92], [37.37, -121.90], [37.34, -121.88],
+                      [37.30, -121.86], [37.26, -121.85],
+                    ].map(([lat, lng]) => toSvg(lat, lng))
+                    return pts.map((p, i) => `${i === 0 ? 'M' : 'L'} ${p.x},${p.y}`).join(' ')
+                  })()}
+                  fill="none" stroke="#FAF9F6" strokeWidth="1" strokeOpacity="0.08" strokeDasharray="6,4"
                 />
 
-                {/* Highway 280 approximate path */}
-                <path
-                  d="M 280,40 Q 250,120 220,200 Q 190,300 220,380 Q 260,460 320,520 Q 380,570 440,590"
-                  fill="none" stroke="#FAF9F6" strokeWidth="1.5" strokeOpacity="0.08"
-                  strokeDasharray="8,4"
-                />
-
-                {/* Connection lines between cities */}
+                {/* Connection lines */}
                 {cities.map((city, i) => {
                   const pos = toSvg(city.lat, city.lng)
                   return cities.slice(i + 1).map((other, j) => {
                     const opos = toSvg(other.lat, other.lng)
                     const dist = Math.sqrt((pos.x - opos.x) ** 2 + (pos.y - opos.y) ** 2)
-                    if (dist > 200) return null
+                    if (dist > 180) return null
                     return (
-                      <line
-                        key={`${i}-${j}`}
-                        x1={pos.x} y1={pos.y}
-                        x2={opos.x} y2={opos.y}
-                        stroke="#D4AF37"
-                        strokeWidth="0.5"
-                        strokeOpacity={0.1}
-                      />
+                      <line key={`${i}-${j}`} x1={pos.x} y1={pos.y} x2={opos.x} y2={opos.y}
+                        stroke="#D4AF37" strokeWidth="0.5" strokeOpacity={hovered === i || hovered === cities.indexOf(other) ? 0.3 : 0.08} />
                     )
                   })
                 })}
@@ -143,39 +236,22 @@ export default function Areas() {
                   const pos = toSvg(city.lat, city.lng)
                   const isHovered = hovered === i
                   return (
-                    <g
-                      key={city.name}
-                      onMouseEnter={() => setHovered(i)}
-                      onMouseLeave={() => setHovered(null)}
-                      className="cursor-pointer"
-                    >
-                      {/* Pulse ring */}
-                      <circle cx={pos.x} cy={pos.y} r="20" fill={isHovered ? "url(#cityGlowHover)" : "url(#cityGlow)"}>
-                        <animate attributeName="r" values="15;25;15" dur="3s" repeatCount="indefinite" />
-                        <animate attributeName="opacity" values="0.4;0.1;0.4" dur="3s" repeatCount="indefinite" />
+                    <g key={city.name} onMouseEnter={() => setHovered(i)} onMouseLeave={() => setHovered(null)} className="cursor-pointer">
+                      <circle cx={pos.x} cy={pos.y} r="25" fill="transparent" />
+                      <circle cx={pos.x} cy={pos.y} r="18" fill="url(#cityGlow)" opacity={isHovered ? 0.8 : 0.4}>
+                        <animate attributeName="r" values="14;22;14" dur="3s" begin={`${i * 0.2}s`} repeatCount="indefinite" />
                       </circle>
-
-                      {/* Core dot */}
-                      <circle
-                        cx={pos.x} cy={pos.y}
-                        r={isHovered ? 6 : 4}
-                        fill="#D4AF37"
-                        filter="url(#glow)"
-                        className="transition-all duration-300"
-                      />
-                      <circle cx={pos.x} cy={pos.y} r={isHovered ? 3 : 2} fill="#FAF9F6" />
-
-                      {/* Label */}
+                      <circle cx={pos.x} cy={pos.y} r={isHovered ? 7 : 5} fill="#D4AF37" filter="url(#glow)" />
+                      <circle cx={pos.x} cy={pos.y} r={isHovered ? 3.5 : 2.5} fill="#FAF9F6" />
                       <text
-                        x={pos.x}
-                        y={pos.y - 14}
+                        x={pos.x} y={pos.y - 16}
                         textAnchor="middle"
                         fill={isHovered ? "#D4AF37" : "#FAF9F6"}
-                        fillOpacity={isHovered ? 1 : 0.6}
-                        fontSize={isHovered ? 14 : 11}
+                        fillOpacity={isHovered ? 1 : 0.7}
+                        fontSize={isHovered ? 13 : 11}
                         fontFamily="DM Sans, sans-serif"
                         fontWeight={isHovered ? 700 : 500}
-                        className="transition-all duration-300 select-none"
+                        className="select-none pointer-events-none"
                       >
                         {city.name}
                       </text>
@@ -183,9 +259,15 @@ export default function Areas() {
                   )
                 })}
 
-                {/* "Silicon Valley" label */}
-                <text x="400" y="560" textAnchor="middle" fill="#D4AF37" fillOpacity="0.2" fontSize="36" fontFamily="Playfair Display, serif" fontWeight="700" letterSpacing="8">
-                  SILICON VALLEY
+                {/* Bay label */}
+                {(() => {
+                  const p = toSvg(37.45, -121.88)
+                  return <text x={p.x} y={p.y} textAnchor="middle" fill="#FAF9F6" fillOpacity="0.08" fontSize="16" fontFamily="DM Sans" fontStyle="italic">San Francisco Bay</text>
+                })()}
+
+                {/* Coverage label */}
+                <text x="400" y="575" textAnchor="middle" fill="#D4AF37" fillOpacity="0.15" fontSize="28" fontFamily="Playfair Display, serif" fontWeight="700" letterSpacing="6">
+                  SERVICE COVERAGE AREA
                 </text>
               </svg>
             </div>
@@ -210,7 +292,7 @@ export default function Areas() {
                   }`}
                 >
                   <div className="flex items-center gap-2">
-                    <div className={`w-2 h-2 rounded-full transition-all duration-300 ${hovered === i ? 'bg-gold shadow-[0_0_8px_rgba(212,175,55,0.8)]' : 'bg-gold/40'}`} />
+                    <div className={`w-2 h-2 rounded-full shrink-0 transition-all duration-300 ${hovered === i ? 'bg-gold shadow-[0_0_8px_rgba(212,175,55,0.8)]' : 'bg-gold/40'}`} />
                     {city.name}
                   </div>
                 </motion.div>
