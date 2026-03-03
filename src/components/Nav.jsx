@@ -11,6 +11,7 @@ export default function Nav() {
     { label: t.nav.about, href: '#about' },
     { label: t.nav.services, href: '#services' },
     { label: t.nav.projects, href: '#projects' },
+    { label: t.nav.gallery, href: '#gallery' },
     { label: t.nav.testimonials, href: '#testimonials' },
     { label: t.nav.contact, href: '#contact' },
   ]

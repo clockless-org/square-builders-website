@@ -2,6 +2,7 @@ export const translations = {
   en: {
     nav: {
       about: 'About', services: 'Services', projects: 'Projects',
+      gallery: 'Gallery',
       testimonials: 'Testimonials', contact: 'Contact', cta: 'Start Your Project',
     },
     hero: {
@@ -78,6 +79,7 @@ export const translations = {
   zh: {
     nav: {
       about: '关于我们', services: '服务', projects: '项目',
+      gallery: '施工实拍',
       testimonials: '客户评价', contact: '联系我们', cta: '开始您的项目',
     },
     hero: {
@@ -154,6 +156,7 @@ export const translations = {
   es: {
     nav: {
       about: 'Nosotros', services: 'Servicios', projects: 'Proyectos',
+      gallery: 'Galería',
       testimonials: 'Testimonios', contact: 'Contacto', cta: 'Inicie Su Proyecto',
     },
     hero: {
