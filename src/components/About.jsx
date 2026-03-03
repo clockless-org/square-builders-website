@@ -6,8 +6,8 @@ export default function About() {
 
   return (
     <section id="about" className="py-32 md:py-40 bg-[var(--color-navy)] overflow-hidden relative">
-      <div className="absolute top-1/4 left-0 w-[400px] h-[400px] bg-gold/5 rounded-full blur-[100px] -translate-x-1/2" />
-      <div className="absolute bottom-1/4 right-0 w-[500px] h-[500px] bg-navy-light/30 rounded-full blur-[120px] translate-x-1/3" />
+      <div className="absolute top-1/4 left-0 w-[400px] h-[400px] bg-gold/5 rounded-full blur-[50px] md:blur-[100px] -translate-x-1/2" />
+      <div className="absolute bottom-1/4 right-0 w-[500px] h-[500px] bg-navy-light/30 rounded-full blur-[60px] md:blur-[120px] translate-x-1/3" />
 
       <div className="max-w-6xl mx-auto px-8 lg:px-12 relative z-10">
         <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-start">

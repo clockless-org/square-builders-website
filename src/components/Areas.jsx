@@ -17,7 +17,7 @@ export default function Areas() {
         </div>
         <div className="flex flex-wrap justify-center gap-4">
           {cities.map((city, i) => (
-            <motion.div key={city} initial={{ opacity: 0, scale: 0.95, y: 20 }} whileInView={{ opacity: 1, scale: 1, y: 0 }} viewport={{ once: true, margin: "-50px" }} transition={{ duration: 0.5, delay: i * 0.05 }} className="px-8 py-3.5 glass-panel rounded-full text-cream/80 text-sm md:text-base font-medium tracking-wide hover:border-gold hover:text-gold hover:shadow-[0_0_20px_rgba(212,175,55,0.2)] hover:-translate-y-1 transition-all duration-300 cursor-default">
+            <motion.div key={city} initial={{ opacity: 0, scale: 0.95, y: 20 }} whileInView={{ opacity: 1, scale: 1, y: 0 }} viewport={{ once: true, margin: "-50px" }} transition={{ duration: 0.5, delay: Math.min(i * 0.03, 0.2) }} className="px-8 py-3.5 glass-panel rounded-full text-cream/80 text-sm md:text-base font-medium tracking-wide hover:border-gold hover:text-gold hover:shadow-[0_0_20px_rgba(212,175,55,0.2)] hover:-translate-y-1 transition-all duration-300 cursor-default">
               {city}
             </motion.div>
           ))}

@@ -1,8 +1,11 @@
+import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { useLang } from '../context/LangContext'
 
 export default function Hero() {
   const { t } = useLang()
+  const [isMobile, setIsMobile] = useState(false)
+  useEffect(() => { setIsMobile(window.innerWidth < 768) }, [])
 
   return (
     <section className="relative h-screen min-h-[700px] flex items-center justify-center overflow-hidden">
@@ -11,7 +14,7 @@ export default function Hero() {
         <div className="absolute inset-0 bg-gradient-to-b from-dark/90 via-dark/60 to-dark/95" />
       </div>
 
-      <div className="absolute inset-0 overflow-hidden">
+      {!isMobile && <div className="absolute inset-0 overflow-hidden">
         <svg className="absolute inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
           <defs>
             <linearGradient id="goldLine" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -28,7 +31,7 @@ export default function Hero() {
           ))}
         </svg>
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[900px] bg-gold/5 rounded-full blur-[100px]" />
-      </div>
+      </div>}
 
       <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
         <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, delay: 0.5 }}>

@@ -12,8 +12,8 @@ export default function Services() {
 
   return (
     <section id="services" className="py-32 md:py-40 bg-dark relative overflow-hidden">
-      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-navy-light/40 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/3" />
-      <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-gold/5 rounded-full blur-[120px] translate-y-1/2 -translate-x-1/3" />
+      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-navy-light/40 rounded-full blur-[60px] md:blur-[120px] -translate-y-1/2 translate-x-1/3" />
+      <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-gold/5 rounded-full blur-[60px] md:blur-[120px] translate-y-1/2 -translate-x-1/3" />
 
       <div className="max-w-6xl mx-auto px-8 lg:px-12 relative z-10">
         <div className="text-center mb-20 flex flex-col items-center">

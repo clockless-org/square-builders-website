@@ -6,7 +6,7 @@ export default function Testimonials() {
 
   return (
     <section id="testimonials" className="py-32 md:py-40 bg-[var(--color-navy)] relative overflow-hidden">
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gold/5 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gold/5 rounded-full blur-[60px] md:blur-[120px] pointer-events-none" />
       <div className="max-w-7xl mx-auto px-8 lg:px-12 relative z-10">
         <div className="text-center mb-24">
           <motion.span initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="text-gold text-sm tracking-[0.4em] uppercase font-semibold block mb-4">{t.testimonials.tag}</motion.span>
