@@ -32,7 +32,7 @@ export default function Nav() {
       >
         <div className="max-w-7xl mx-auto flex items-center justify-between px-6 lg:px-8 h-16">
           <a href="#" className="flex items-center gap-3 group">
-            <img src="/images/logo.png" alt="Square Builders Group" className="w-10 h-10 object-contain transition-transform duration-500 group-hover:scale-110" />
+            <img src="/images/logo.png" alt="Square Builders Group" className="w-14 h-14 object-contain transition-transform duration-500 group-hover:scale-110" />
             <div className="hidden sm:block">
               <span className="text-gradient-cream font-serif text-xl font-bold tracking-wide">Square Builders</span>
               <span className="block text-gold/80 text-[10px] tracking-[0.3em] uppercase font-sans mt-0.5">Group</span>

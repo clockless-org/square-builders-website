@@ -11,7 +11,7 @@ export default function Footer() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-10 mb-16">
           <div className="col-span-2 md:col-span-1">
             <div className="flex items-center gap-3 mb-6">
-              <img src="/images/logo.png" alt="Square Builders Group" className="w-10 h-10 object-contain" />
+              <img src="/images/logo.png" alt="Square Builders Group" className="w-14 h-14 object-contain" />
               <div>
                 <span className="block text-gradient-cream font-serif font-bold text-lg leading-none">Square Builders</span>
                 <span className="block text-gold/80 text-[10px] tracking-[0.3em] uppercase mt-1">Group</span>
