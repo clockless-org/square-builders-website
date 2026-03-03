@@ -103,6 +103,11 @@ export default function Footer() {
             ))}
           </div>
         </div>
+
+        {/* Git commit */}
+        <div className="absolute bottom-4 right-6 text-cream/20 text-[10px] font-mono tracking-wider">
+          7571b76
+        </div>
       </div>
     </footer>
   )
