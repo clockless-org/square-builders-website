@@ -1,3 +1,4 @@
+import { LangProvider } from './context/LangContext'
 import Nav from './components/Nav'
 import Hero from './components/Hero'
 import Stats from './components/Stats'
@@ -12,18 +13,20 @@ import Footer from './components/Footer'
 
 export default function App() {
   return (
-    <div className="overflow-x-hidden">
-      <Nav />
-      <Hero />
-      <Stats />
-      <About />
-      <Services />
-      <Projects />
-      <Areas />
-      <Testimonials />
-      <FAQ />
-      <Contact />
-      <Footer />
-    </div>
+    <LangProvider>
+      <div className="overflow-x-hidden">
+        <Nav />
+        <Hero />
+        <Stats />
+        <About />
+        <Services />
+        <Projects />
+        <Areas />
+        <Testimonials />
+        <FAQ />
+        <Contact />
+        <Footer />
+      </div>
+    </LangProvider>
   )
 }
