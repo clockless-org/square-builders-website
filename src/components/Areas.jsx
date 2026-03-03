@@ -18,88 +18,29 @@ const cities = [
   { name: 'Belmont', lat: 37.5202, lng: -122.2758 },
 ]
 
-const bounds = {
+const mapBounds = {
   minLat: 37.15, maxLat: 37.65,
   minLng: -122.50, maxLng: -121.75,
 }
 
+const SVG_W = 800, SVG_H = 600
+
 function toSvg(lat, lng) {
-  const x = ((lng - bounds.minLng) / (bounds.maxLng - bounds.minLng)) * 800
-  const y = ((bounds.maxLat - lat) / (bounds.maxLat - bounds.minLat)) * 600
+  const x = ((lng - mapBounds.minLng) / (mapBounds.maxLng - mapBounds.minLng)) * SVG_W
+  const y = ((mapBounds.maxLat - lat) / (mapBounds.maxLat - mapBounds.minLat)) * SVG_H
   return { x, y }
 }
 
-// Convex hull of service area (expanded outward for visual coverage)
+// Coverage hull (expanded)
 const coverageHull = [
-  { lat: 37.62, lng: -122.42 },  // north of Hillsborough
-  { lat: 37.55, lng: -122.15 },  // east of Belmont
-  { lat: 37.50, lng: -122.10 },  // between Menlo/PA
-  { lat: 37.44, lng: -122.05 },  // east of Palo Alto
-  { lat: 37.40, lng: -121.82 },  // east of San Jose
-  { lat: 37.30, lng: -121.80 },  // SE of San Jose
-  { lat: 37.22, lng: -121.88 },  // south of Campbell
-  { lat: 37.20, lng: -122.00 },  // south of Saratoga
-  { lat: 37.22, lng: -122.10 },  // SW of Saratoga
-  { lat: 37.30, lng: -122.15 },  // west of Cupertino
-  { lat: 37.40, lng: -122.20 },  // west of Los Altos
-  { lat: 37.50, lng: -122.30 },  // west of Atherton
-  { lat: 37.60, lng: -122.43 },  // west of Burlingame
+  [37.62, -122.42], [37.55, -122.15], [37.50, -122.10],
+  [37.44, -122.05], [37.40, -121.82], [37.30, -121.80],
+  [37.22, -121.88], [37.20, -122.00], [37.22, -122.10],
+  [37.30, -122.15], [37.40, -122.20], [37.50, -122.30],
+  [37.60, -122.43],
 ]
-
-const hullPath = coverageHull.map((p, i) => {
-  const { x, y } = toSvg(p.lat, p.lng)
-  return `${i === 0 ? 'M' : 'L'} ${x},${y}`
-}).join(' ') + ' Z'
-
-// Bay water shape
-const bayShore = [
-  { lat: 37.65, lng: -122.18 },
-  { lat: 37.60, lng: -122.22 },
-  { lat: 37.55, lng: -122.18 },
-  { lat: 37.52, lng: -122.12 },
-  { lat: 37.48, lng: -122.08 },
-  { lat: 37.44, lng: -122.05 },
-  { lat: 37.40, lng: -122.00 },
-  { lat: 37.38, lng: -121.96 },
-  { lat: 37.36, lng: -121.92 },
-  { lat: 37.34, lng: -121.88 },
-  { lat: 37.32, lng: -121.86 },
-  { lat: 37.30, lng: -121.84 },
-  { lat: 37.28, lng: -121.82 },
-  { lat: 37.25, lng: -121.82 },
-  { lat: 37.22, lng: -121.82 },
-  { lat: 37.20, lng: -121.82 },
-  { lat: 37.15, lng: -121.80 },
-  { lat: 37.15, lng: -121.75 },
-  { lat: 37.65, lng: -121.75 },
-  { lat: 37.65, lng: -122.18 },
-]
-
-const bayPath = bayShore.map((p, i) => {
-  const { x, y } = toSvg(p.lat, p.lng)
-  return `${i === 0 ? 'M' : 'L'} ${x},${y}`
-}).join(' ') + ' Z'
-
-// East shore (Fremont side)
-const eastShore = [
-  { lat: 37.65, lng: -122.10 },
-  { lat: 37.60, lng: -122.13 },
-  { lat: 37.55, lng: -122.10 },
-  { lat: 37.50, lng: -122.05 },
-  { lat: 37.45, lng: -122.00 },
-  { lat: 37.40, lng: -121.95 },
-  { lat: 37.35, lng: -121.90 },
-  { lat: 37.30, lng: -121.86 },
-  { lat: 37.25, lng: -121.83 },
-  { lat: 37.20, lng: -121.82 },
-  { lat: 37.15, lng: -121.82 },
-  { lat: 37.15, lng: -121.75 },
-  { lat: 37.65, lng: -121.75 },
-  { lat: 37.65, lng: -122.10 },
-]
-
-const eastPath = eastShore.map((p, i) => {
-  const { x, y } = toSvg(p.lat, p.lng)
+const hullPath = coverageHull.map(([lat, lng], i) => {
+  const { x, y } = toSvg(lat, lng)
   return `${i === 0 ? 'M' : 'L'} ${x},${y}`
 }).join(' ') + ' Z'
 
@@ -126,8 +67,20 @@ export default function Areas() {
         >
           {/* Map */}
           <div className="lg:col-span-3 relative">
-            <div className="glass-panel rounded-2xl p-4 md:p-6 overflow-hidden">
-              <svg viewBox="0 0 800 600" className="w-full h-auto" xmlns="http://www.w3.org/2000/svg">
+            <div className="glass-panel rounded-2xl overflow-hidden relative">
+              {/* Real map background */}
+              <img
+                src="/images/bay-area-map.jpg"
+                alt="Bay Area Map"
+                className="w-full h-auto opacity-60"
+                style={{ aspectRatio: '4/3' }}
+              />
+              {/* SVG overlay */}
+              <svg
+                viewBox={`0 0 ${SVG_W} ${SVG_H}`}
+                className="absolute inset-0 w-full h-full"
+                xmlns="http://www.w3.org/2000/svg"
+              >
                 <defs>
                   <radialGradient id="cityGlow" cx="50%" cy="50%" r="50%">
                     <stop offset="0%" stopColor="#D4AF37" stopOpacity="0.6" />
@@ -138,84 +91,22 @@ export default function Areas() {
                     <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
                   </filter>
                   <filter id="bigGlow">
-                    <feGaussianBlur stdDeviation="20" />
+                    <feGaussianBlur stdDeviation="25" />
                   </filter>
                   <linearGradient id="coverageFill" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#D4AF37" stopOpacity="0.15" />
-                    <stop offset="50%" stopColor="#D4AF37" stopOpacity="0.08" />
-                    <stop offset="100%" stopColor="#D4AF37" stopOpacity="0.15" />
+                    <stop offset="0%" stopColor="#D4AF37" stopOpacity="0.12" />
+                    <stop offset="50%" stopColor="#D4AF37" stopOpacity="0.06" />
+                    <stop offset="100%" stopColor="#D4AF37" stopOpacity="0.12" />
                   </linearGradient>
                 </defs>
 
-                {/* Background - land */}
-                <rect width="800" height="600" fill="#0F1E35" rx="12" />
+                {/* Coverage area glow */}
+                <path d={hullPath} fill="#D4AF37" opacity="0.2" filter="url(#bigGlow)" />
 
-                {/* Bay water */}
-                <path d={bayPath} fill="#0a1525" opacity="0.9" />
-
-                {/* Grid */}
-                {[...Array(12)].map((_, i) => (
-                  <line key={`h${i}`} x1="0" y1={i * 50} x2="800" y2={i * 50} stroke="#FAF9F6" strokeWidth="0.3" strokeOpacity="0.04" />
-                ))}
-                {[...Array(16)].map((_, i) => (
-                  <line key={`v${i}`} x1={i * 50} y1="0" x2={i * 50} y2="600" stroke="#FAF9F6" strokeWidth="0.3" strokeOpacity="0.04" />
-                ))}
-
-                {/* Coverage area - glow behind */}
-                <path d={hullPath} fill="#D4AF37" opacity="0.15" filter="url(#bigGlow)" />
-
-                {/* Coverage area - main fill */}
-                <path d={hullPath} fill="url(#coverageFill)" stroke="#D4AF37" strokeWidth="1.5" strokeOpacity="0.4" strokeDasharray="6,3">
+                {/* Coverage area fill */}
+                <path d={hullPath} fill="url(#coverageFill)" stroke="#D4AF37" strokeWidth="1.5" strokeOpacity="0.5" strokeDasharray="6,3">
                   <animate attributeName="stroke-dashoffset" values="0;18" dur="4s" repeatCount="indefinite" />
                 </path>
-
-                {/* Highway 101 */}
-                <path
-                  d={(() => {
-                    const pts = [
-                      [37.62, -122.38], [37.58, -122.34], [37.55, -122.28],
-                      [37.50, -122.22], [37.46, -122.18], [37.43, -122.14],
-                      [37.40, -122.08], [37.38, -122.04], [37.35, -121.96],
-                      [37.33, -121.90], [37.30, -121.86],
-                    ].map(([lat, lng]) => toSvg(lat, lng))
-                    return pts.map((p, i) => `${i === 0 ? 'M' : 'L'} ${p.x},${p.y}`).join(' ')
-                  })()}
-                  fill="none" stroke="#FAF9F6" strokeWidth="1.5" strokeOpacity="0.1" strokeDasharray="8,4"
-                />
-                {/* 101 label */}
-                {(() => {
-                  const p = toSvg(37.50, -122.22)
-                  return <text x={p.x + 10} y={p.y} fill="#FAF9F6" fillOpacity="0.15" fontSize="10" fontFamily="DM Sans">101</text>
-                })()}
-
-                {/* Highway 280 */}
-                <path
-                  d={(() => {
-                    const pts = [
-                      [37.60, -122.42], [37.55, -122.35], [37.50, -122.28],
-                      [37.46, -122.24], [37.42, -122.18], [37.38, -122.12],
-                      [37.34, -122.06], [37.30, -122.00], [37.26, -121.94],
-                    ].map(([lat, lng]) => toSvg(lat, lng))
-                    return pts.map((p, i) => `${i === 0 ? 'M' : 'L'} ${p.x},${p.y}`).join(' ')
-                  })()}
-                  fill="none" stroke="#FAF9F6" strokeWidth="1.5" strokeOpacity="0.1" strokeDasharray="8,4"
-                />
-                {(() => {
-                  const p = toSvg(37.46, -122.25)
-                  return <text x={p.x + 10} y={p.y} fill="#FAF9F6" fillOpacity="0.15" fontSize="10" fontFamily="DM Sans">280</text>
-                })()}
-
-                {/* I-880 */}
-                <path
-                  d={(() => {
-                    const pts = [
-                      [37.40, -121.92], [37.37, -121.90], [37.34, -121.88],
-                      [37.30, -121.86], [37.26, -121.85],
-                    ].map(([lat, lng]) => toSvg(lat, lng))
-                    return pts.map((p, i) => `${i === 0 ? 'M' : 'L'} ${p.x},${p.y}`).join(' ')
-                  })()}
-                  fill="none" stroke="#FAF9F6" strokeWidth="1" strokeOpacity="0.08" strokeDasharray="6,4"
-                />
 
                 {/* Connection lines */}
                 {cities.map((city, i) => {
@@ -224,9 +115,11 @@ export default function Areas() {
                     const opos = toSvg(other.lat, other.lng)
                     const dist = Math.sqrt((pos.x - opos.x) ** 2 + (pos.y - opos.y) ** 2)
                     if (dist > 180) return null
+                    const idx = cities.indexOf(other)
                     return (
                       <line key={`${i}-${j}`} x1={pos.x} y1={pos.y} x2={opos.x} y2={opos.y}
-                        stroke="#D4AF37" strokeWidth="0.5" strokeOpacity={hovered === i || hovered === cities.indexOf(other) ? 0.3 : 0.08} />
+                        stroke="#D4AF37" strokeWidth="0.5"
+                        strokeOpacity={hovered === i || hovered === idx ? 0.4 : 0.1} />
                     )
                   })
                 })}
@@ -243,12 +136,23 @@ export default function Areas() {
                       </circle>
                       <circle cx={pos.x} cy={pos.y} r={isHovered ? 7 : 5} fill="#D4AF37" filter="url(#glow)" />
                       <circle cx={pos.x} cy={pos.y} r={isHovered ? 3.5 : 2.5} fill="#FAF9F6" />
+
+                      {/* Label with background */}
+                      <rect
+                        x={pos.x - city.name.length * 3.5 - 6}
+                        y={pos.y - 28}
+                        width={city.name.length * 7 + 12}
+                        height={18}
+                        rx="4"
+                        fill="#0B162C"
+                        fillOpacity={isHovered ? 0.9 : 0.7}
+                      />
                       <text
-                        x={pos.x} y={pos.y - 16}
+                        x={pos.x} y={pos.y - 15}
                         textAnchor="middle"
                         fill={isHovered ? "#D4AF37" : "#FAF9F6"}
-                        fillOpacity={isHovered ? 1 : 0.7}
-                        fontSize={isHovered ? 13 : 11}
+                        fillOpacity={isHovered ? 1 : 0.8}
+                        fontSize={isHovered ? 12 : 10}
                         fontFamily="DM Sans, sans-serif"
                         fontWeight={isHovered ? 700 : 500}
                         className="select-none pointer-events-none"
@@ -259,18 +163,18 @@ export default function Areas() {
                   )
                 })}
 
-                {/* Bay label */}
-                {(() => {
-                  const p = toSvg(37.45, -121.88)
-                  return <text x={p.x} y={p.y} textAnchor="middle" fill="#FAF9F6" fillOpacity="0.08" fontSize="16" fontFamily="DM Sans" fontStyle="italic">San Francisco Bay</text>
-                })()}
-
                 {/* Coverage label */}
-                <text x="400" y="575" textAnchor="middle" fill="#D4AF37" fillOpacity="0.15" fontSize="28" fontFamily="Playfair Display, serif" fontWeight="700" letterSpacing="6">
+                <text x={SVG_W / 2} y={SVG_H - 15} textAnchor="middle" fill="#D4AF37" fillOpacity="0.2" fontSize="22" fontFamily="Playfair Display, serif" fontWeight="700" letterSpacing="5">
                   SERVICE COVERAGE AREA
                 </text>
               </svg>
+
+              {/* Gradient overlay for edges */}
+              <div className="absolute inset-0 pointer-events-none bg-gradient-to-t from-dark/60 via-transparent to-dark/30" />
+              <div className="absolute inset-0 pointer-events-none bg-gradient-to-r from-dark/30 via-transparent to-dark/30" />
             </div>
+            {/* Map attribution */}
+            <p className="text-cream/20 text-[9px] mt-2 text-right">© OpenStreetMap contributors © CARTO</p>
           </div>
 
           {/* City list */}

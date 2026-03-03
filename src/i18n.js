@@ -45,7 +45,7 @@ export const translations = {
         { title: 'The Daylight Kitchen', category: 'Design Build', description: 'Spacious, sun-filled kitchen featuring an overhead skylight, warm finishes, and a large central island.' },
       ],
     },
-    areas: { tag: 'Where We Build', title: 'Service Areas', desc: '2025–present project locations' },
+    areas: { tag: 'Where We Build', title: 'Service Areas', desc: '2000–present project locations' },
     testimonials: {
       tag: 'Client Stories', title: 'What Our Clients Say',
       items: [
@@ -122,7 +122,7 @@ export const translations = {
         { title: 'The Daylight Kitchen', category: '设计建造', description: '宽敞明亮的厨房，配有天窗、温暖的饰面和大型中岛台。' },
       ],
     },
-    areas: { tag: '服务区域', title: '服务范围', desc: '2025年至今项目所在地' },
+    areas: { tag: '服务区域', title: '服务范围', desc: '2000年至今项目所在地' },
     testimonials: {
       tag: '客户故事', title: '客户怎么说',
       items: [
@@ -199,7 +199,7 @@ export const translations = {
         { title: 'The Daylight Kitchen', category: 'Diseño y Construcción', description: 'Cocina espaciosa y luminosa con tragaluz, acabados cálidos y una gran isla central.' },
       ],
     },
-    areas: { tag: 'Dónde Construimos', title: 'Áreas de Servicio', desc: 'Ubicaciones de proyectos desde 2025' },
+    areas: { tag: 'Dónde Construimos', title: 'Áreas de Servicio', desc: 'Ubicaciones de proyectos desde 2000' },
     testimonials: {
       tag: 'Historias de Clientes', title: 'Lo Que Dicen Nuestros Clientes',
       items: [
