@@ -14,7 +14,7 @@ export default function Footer() {
               <img
                 src="/images/logo.png"
                 alt="Square Builders Group"
-                className="w-10 h-10 object-contain invert"
+                className="w-10 h-10 object-contain"
               />
               <div>
                 <span className="block text-gradient-cream font-serif font-bold text-lg leading-none">

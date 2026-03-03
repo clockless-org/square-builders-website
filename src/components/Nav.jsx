@@ -34,7 +34,7 @@ export default function Nav() {
             <img
               src="/images/logo.png"
               alt="Square Builders Group"
-              className="w-10 h-10 object-contain brightness-0 invert transition-transform duration-500 group-hover:scale-110"
+              className="w-10 h-10 object-contain transition-transform duration-500 group-hover:scale-110"
             />
             <div className="hidden sm:block">
               <span className="text-gradient-cream font-serif text-xl font-bold tracking-wide">
