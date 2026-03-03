@@ -2,15 +2,45 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { useLang } from '../context/LangContext'
 
+const CONTACT_EMAIL = 'info@squarebuildersgroup.com'
+
 export default function Contact() {
   const { t } = useLang()
-  const [email, setEmail] = useState('')
-  const [submitted, setSubmitted] = useState(false)
+  const [form, setForm] = useState({ firstName: '', lastName: '', email: '', phone: '', projectType: '', details: '' })
+  const [status, setStatus] = useState(null) // null | 'sending' | 'success' | 'error'
 
-  const handleSubmit = (e) => {
+  const update = (field) => (e) => setForm(prev => ({ ...prev, [field]: e.target.value }))
+
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    if (email) setSubmitted(true)
+    if (!form.firstName || !form.email || !form.phone) {
+      setStatus('error')
+      return
+    }
+    setStatus('sending')
+    try {
+      const res = await fetch(`https://formsubmit.co/ajax/${CONTACT_EMAIL}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({
+          name: `${form.firstName} ${form.lastName}`.trim(),
+          email: form.email,
+          phone: form.phone,
+          'Project Type': form.projectType || 'Not specified',
+          message: form.details || '(No details provided)',
+          _subject: `🏗️ New Consultation: ${form.firstName} ${form.lastName} — ${form.projectType || 'General Inquiry'}`
+        })
+      })
+      if (res.ok) {
+        setStatus('success')
+        setForm({ firstName: '', lastName: '', email: '', phone: '', projectType: '', details: '' })
+      } else throw new Error()
+    } catch {
+      setStatus('error')
+    }
   }
+
+  const inputClass = "w-full px-6 py-4 bg-dark/40 border border-gold/10 text-cream placeholder:text-cream/30 focus:outline-none focus:border-gold/50 transition-all duration-300 font-light text-base rounded-md"
 
   return (
     <section id="contact" className="py-32 md:py-48 bg-[var(--color-navy)] relative overflow-hidden">
@@ -23,20 +53,37 @@ export default function Contact() {
           <motion.h2 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.1 }} className="font-serif text-5xl md:text-6xl lg:text-7xl font-bold mb-8 tracking-tight text-gradient-cream">{t.contact.title}</motion.h2>
           <motion.p initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.2 }} className="text-cream/60 text-lg md:text-xl max-w-2xl mx-auto mb-16 leading-relaxed font-light">{t.contact.desc}</motion.p>
 
-          <motion.form initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.3 }} onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-4 max-w-2xl mx-auto mb-20 relative p-2 md:p-3 glass-panel rounded-lg">
-            {!submitted ? (
-              <>
-                <div className="flex-1 relative">
-                  <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder={t.contact.placeholder} required className="w-full h-full px-8 py-5 md:py-4 bg-transparent text-cream placeholder:text-cream/30 focus:outline-none transition-all duration-300 font-light text-lg rounded-md" />
-                  <div className="absolute inset-0 bg-dark/40 rounded-md -z-10 shadow-inner" />
-                  <div className="absolute inset-0 border border-gold/10 rounded-md pointer-events-none transition-colors duration-300 peer-focus:border-gold/50" />
-                </div>
-                <button type="submit" className="px-10 py-5 bg-gradient-to-r from-gold to-[#B8860B] text-dark font-bold tracking-[0.1em] uppercase text-sm transition-all duration-300 whitespace-nowrap rounded-md hover:shadow-[0_0_30px_rgba(212,175,55,0.4)] hover:-translate-y-0.5">{t.contact.cta}</button>
-              </>
-            ) : (
-              <div className="w-full text-center py-6">
-                <span className="text-gradient-gold font-serif text-3xl font-bold drop-shadow-lg">{t.contact.thanks}</span>
+          <motion.form initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.3 }} onSubmit={handleSubmit} className="max-w-2xl mx-auto mb-20 glass-panel rounded-lg p-8 md:p-10 text-left">
+            {status === 'success' ? (
+              <div className="text-center py-8">
+                <span className="text-gradient-gold font-serif text-3xl font-bold drop-shadow-lg block mb-4">{t.contact.thanks}</span>
+                <p className="text-cream/60 font-light">We'll get back to you within 24 hours.</p>
               </div>
+            ) : (
+              <>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+                  <input type="text" value={form.firstName} onChange={update('firstName')} placeholder="First Name *" required className={inputClass} />
+                  <input type="text" value={form.lastName} onChange={update('lastName')} placeholder="Last Name" className={inputClass} />
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+                  <input type="email" value={form.email} onChange={update('email')} placeholder="Email *" required className={inputClass} />
+                  <input type="tel" value={form.phone} onChange={update('phone')} placeholder="Phone *" required className={inputClass} />
+                </div>
+                <select value={form.projectType} onChange={update('projectType')} className={`${inputClass} mb-4 appearance-none`}>
+                  <option value="">Select a service...</option>
+                  <option value="Design Build">Design Build</option>
+                  <option value="New Construction">New Construction</option>
+                  <option value="Kitchen Remodel">Kitchen Remodel</option>
+                  <option value="Home Addition / ADU">Home Addition / ADU</option>
+                  <option value="Whole-Home Renovation">Whole-Home Renovation</option>
+                  <option value="Other">Other</option>
+                </select>
+                <textarea value={form.details} onChange={update('details')} placeholder="Tell us about your project — location, size, timeline, budget range..." rows={4} className={`${inputClass} mb-6 resize-none`} />
+                <button type="submit" disabled={status === 'sending'} className="w-full px-10 py-5 bg-gradient-to-r from-gold to-[#B8860B] text-dark font-bold tracking-[0.1em] uppercase text-sm transition-all duration-300 rounded-md hover:shadow-[0_0_30px_rgba(212,175,55,0.4)] hover:-translate-y-0.5 disabled:opacity-50">
+                  {status === 'sending' ? 'Sending...' : t.contact.cta}
+                </button>
+                {status === 'error' && <p className="text-red-400 text-sm text-center mt-4">Please fill in all required fields (*) and try again.</p>}
+              </>
             )}
           </motion.form>
 
